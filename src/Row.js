@@ -10,16 +10,21 @@ function Row({ title, fetchUrl }) {
       setMovies(request.data.results);
       return request;
     }
-    
     fetchData();
   }, [fetchUrl]);
 
   console.log(movies);
 
   return (
-    <div>
+    <div className='row'>
       <h2>{title}</h2>
-      {/* Render your movies here */}
+      
+    <div className='row__posters'>
+
+    {movies.map()}
+
+    </div>
+
     </div>
   );
 }
