@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function Row() {
+function Row({ title, fetchUrl }) {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get(fetchUrl);
+      setMovies(request.data.results);
+      return request;
+    }
+    
+    fetchData();
+  }, [fetchUrl]);
+
+  console.log(movies);
+
   return (
     <div>
-        
+      <h2>{title}</h2>
+      {/* Render your movies here */}
     </div>
-  )
+  );
 }
 
-export default Row
+export default Row;
