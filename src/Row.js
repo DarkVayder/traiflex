@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import instance from './axios';
+import axios from './axios';
 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
@@ -9,10 +8,9 @@ function Row({ title, fetchUrl }) {
 
   useEffect(() => {
     async function fetchData() {
-      const request = await instance.get(fetchUrl);
-      //setMovies(request.data.results);
-      //return request;
-      console.log(request)
+      const request = await axios.get(fetchUrl);
+      setMovies(request.data.results);
+      return request;
     }
     fetchData();
   }, [fetchUrl]);
