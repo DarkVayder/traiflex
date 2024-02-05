@@ -3,9 +3,16 @@
     top: 0;
     width: 100%;
     padding: 20px;
+    height: 12.5px;
+    z-index: 1;
 
     display: flex;
     justify-content: space-between;
+    transition: background-color 0.5s ease-in;
+}
+
+.nav__black {
+    background-color: black; 
 }
 
 .nav__logo{
@@ -16,6 +23,7 @@
 }
 
 .nav__avatar{
+    cursor: pointer;
     right: 20px;
     position: fixed;
     width: 30px;

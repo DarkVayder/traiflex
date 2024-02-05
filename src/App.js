@@ -5,7 +5,6 @@ import requests from './request';
 import Banner from './Banner';
 import "./Banner.css";
 import Nav from './Nav';
-import "./Nav.css";
 
 function App() {
 
