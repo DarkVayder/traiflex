@@ -24,3 +24,11 @@
     transform: scale(1.08);
     opacity: 1;
 }
+
+.row__postersLarge img {
+    max-height: 250px;
+}
+
+.row__postersLarge img:hover {
+    transform: scale(1.09);
+}
