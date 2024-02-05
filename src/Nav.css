@@ -3,7 +3,7 @@
     top: 0;
     width: 100%;
     padding: 20px;
-    height: 12.5px;
+    height: 18.5px;
     z-index: 1;
 
     display: flex;
@@ -17,15 +17,34 @@
 
 .nav__logo{
     position: fixed;
-    left: 0;
+    left: 50px;
     width: 80px;
     object-fit: contain;
+    top: -0.1;
 }
 
 .nav__avatar{
     cursor: pointer;
-    right: 20px;
+    right: 70px;
     position: fixed;
     width: 30px;
     object-fit: contain;
+}
+
+.nav__notification{
+    cursor: pointer;
+    position: fixed;
+    right: 110px;
+    width: 32px;
+    object-fit: contain;
+    top: -0.1;
+}
+
+.nav__search{
+    cursor: pointer;
+    position: fixed;
+    right: 155px;
+    width: 20px;
+    object-fit: contain;
+    top: 21px;
 }

@@ -13,13 +13,13 @@ function App() {
     <Nav />
       
     <Banner/>
-    <Row title="NETFLIX ORIGINALS" 
+    <Row title="Netflix Originals" 
     fetchUrl={requests.fetchNetflixOriginals} 
     isLargeRow
     />
   
     
-    <Row title="TRENDING MOVIES" fetchUrl={requests.fetchTrending} />
+    <Row title="Trending Movies" fetchUrl={requests.fetchTrending} />
     <Row title="Top Rated" fetchUrl={requests.fetchTopRated} /> 
     <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} />
     <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} />   
