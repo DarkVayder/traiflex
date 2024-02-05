@@ -38,3 +38,8 @@
 .row__postersLarge img:hover {
     transform: scale(1.09);
 }
+
+.row h2{
+    font-size: 0.9rem;
+    font-family: sans-serif;
+}
