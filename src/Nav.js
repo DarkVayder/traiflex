@@ -29,8 +29,14 @@ function Nav() {
       <img
         className="nav__logo"
         src={NetflixLogo}
-        alt='Netflix logo' href 
+        alt='Netflix logo'
       />
+      <div className="nav__links">
+        <p className="nav__link">TV Shows</p>
+        <p className="nav__link">Movies</p>
+        <p className="nav__link">Popular</p>
+        <p className="nav__link">Genres</p>
+      </div>
       <img
         className="nav__notification"
         src={notification}
