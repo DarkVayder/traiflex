@@ -44,14 +44,17 @@ function Row({ title, fetchUrl, isLargeRow }) {
     if (trailerUrl) {
       setTrailerUrl('');
     } else {
-      movieTrailer(movie?.name ||"")
-      .then(url => {
-        const urlParams = new URLSearchParams(new URL(url).search);
-        setTrailerUrl(urlParams.get("v"));
-      })
-      .catch(error => console.log(error));
+      movieTrailer(movie?.name || "")
+        .then(url => {
+          const urlParams = new URLSearchParams(new URL(url).search);
+          setTrailerUrl(urlParams.get("v"));
+        })
+        .catch(error => {
+          console.error("Error fetching trailer:", error);
+        });
     }
   }
+  
 
   return (
     <div className="row">

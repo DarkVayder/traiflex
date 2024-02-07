@@ -4,6 +4,7 @@
     top: -100px;
     margin-left: 20px;
 }
+
 .row__posters {
     display: flex;
     justify-content: space-evenly;
@@ -39,7 +40,30 @@
     transform: scale(1.09);
 }
 
-.row h2{
+.row h2 {
     font-size: 0.9rem;
     font-family: sans-serif;
+}
+
+
+@media (max-width: 768px) {
+    .row {
+        top: 0;
+        margin-left: 0;
+    }
+
+    .row h2 {
+        font-size: 0.8rem; 
+    }
+
+    .row__posters img {
+        width: 150px; 
+        height: 100px; 
+        max-height: 80px;
+        margin-right: 8px;
+    }
+
+    .row__postersLarge img {
+        max-height: 200px; 
+    }
 }
