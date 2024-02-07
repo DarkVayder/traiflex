@@ -3,6 +3,13 @@ import axios from './axios';
 import "./Row.css";
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
+import PropTypes from 'prop-types';
+
+Row.propTypes = {
+  title: PropTypes.string.isRequired,
+  fetchUrl: PropTypes.string.isRequired,
+  isLargeRow: PropTypes.bool,
+};
 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
