@@ -7,16 +7,36 @@
 
 .row__posters {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
-    overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
     padding: 20px;
+    scrollbar-width: thin; 
+    scrollbar-color: transparent transparent; 
+
+   
+    ::-webkit-scrollbar {
+        width: 6px; 
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: transparent; 
+        transition: background-color 0.3s;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(129, 6, 6, 0.5); 
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
 }
 
-.row__posters::-webkit-scrollbar {
-    display: none;
+.row__posters:hover ::-webkit-scrollbar-thumb {
+    background-color: rgba(129, 6, 6, 0.5); 
 }
+
 
 .row__posters img {
     width: 200px;
@@ -45,7 +65,6 @@
     font-family: sans-serif;
 }
 
-
 @media (max-width: 768px) {
     .row {
         top: 0;
@@ -53,17 +72,17 @@
     }
 
     .row h2 {
-        font-size: 0.8rem; 
+        font-size: 0.8rem;
     }
 
     .row__posters img {
-        width: 150px; 
-        height: 100px; 
+        width: 150px;
+        height: 100px;
         max-height: 80px;
         margin-right: 8px;
     }
 
     .row__postersLarge img {
-        max-height: 200px; 
+        max-height: 200px;
     }
 }
