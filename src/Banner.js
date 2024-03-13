@@ -36,6 +36,7 @@ function Banner() {
     width: '100%',
     playerVars: {
       autoplay: 1,
+      fullscreen: 1,
     },
   };
 
