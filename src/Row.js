@@ -37,6 +37,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
     width: "100%",
     playerVars: {
       autoplay: 1,
+      fullscreen: 1,
     },
   };
 
