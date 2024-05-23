@@ -4,6 +4,7 @@ import AvatarLogo from './Avatar.png';
 import notification from './notification.png';
 import search from './search.png';
 import './Nav.css';
+import { logout } from './Firebase';
 
 function Nav() {
   const [show, setShow] = useState(false);
@@ -54,7 +55,7 @@ function Nav() {
           alt='Avatar Logo'
         />
         <div className='dropdown'>
-          <p>Sign Out of My Profile</p>
+          <p onClick={logout}>Sign Out of My Profile</p>
         </div>
       </div>
     </div>
