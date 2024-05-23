@@ -35,7 +35,7 @@ function Nav() {
         <p className="nav__link">TV Shows</p>
         <p className="nav__link">Movies</p>
         <p className="nav__link">Popular</p>
-        <p className="nav__link">Genres</p>
+        <p className="nav__link">My List</p>
       </div>
       <img
         className="nav__notification"
@@ -47,11 +47,16 @@ function Nav() {
         src={search}
         alt='search icon'
       />
-      <img
-        className="nav__avatar"
-        src={AvatarLogo}
-        alt='Avatar Logo'
-      />
+      <div className="nav__avatar-container">
+        <img
+          className="nav__avatar"
+          src={AvatarLogo}
+          alt='Avatar Logo'
+        />
+        <div className='dropdown'>
+          <p>Sign Out of My Profile</p>
+        </div>
+      </div>
     </div>
   );
 }

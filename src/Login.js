@@ -18,16 +18,16 @@ const Login = () => {
           <input type='password' placeholder='Password' />
           <button>{signState}</button>
           <div className='form-help'>
-            <div type='remember Me'>
+            <div className='remember'>
               <input type='checkbox' />
               <label htmlFor=''>Remember Me</label>
             </div>
-            <p>Need Help</p>
+            <p>Need Help?</p>
           </div>
         </form>
         <div className='form-switch'> 
         {signState ==='Sign In' ? <p>New to Netflix? <span onClick={()=>{setSignState('Sign Up')}}>Sign Up Now</span></p> :<></>}
-        <p>Already have an account? <span> onClick={()=>{setSignState('Sign In')}}Sign In Now</span></p>
+        <p>Already have an account? <span  onClick={()=>{setSignState('Sign In')}} >Sign In Now</span></p>
         </div>
       </div>
     </div>
