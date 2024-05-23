@@ -1,3 +1,38 @@
-.header {
+.footer{
+    padding: 30px 4%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: inherit;
     color: white;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 130px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.footer ul{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 15px;
+    margin-bottom: 30px;
+    list-style: none;
+    color: white;
+    cursor: pointer;
+}
+
+.footer ul li:hover{
+    color: #ddd;
+    transition: ease-in-out;
+}
+.copyright-text {
+    color: grey;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    cursor: none;
 }
