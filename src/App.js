@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <BrowserRouter>
+      <ToastContainer theme="dark" />
       <AuthListener /> 
       <Routes>
         <Route index element={<Home />} />
