@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import YouTube from 'react-youtube';
 
 function Player({ trailerUrl, onClose }) {
@@ -17,35 +17,19 @@ function Player({ trailerUrl, onClose }) {
     const playerElement = playerRef.current;
     if (playerElement.requestFullscreen) {
       playerElement.requestFullscreen();
-    } else if (playerElement.mozRequestFullScreen) {
+    } else if (playerElement.mozRequestFullScreen) { /* Firefox */
       playerElement.mozRequestFullScreen();
-    } else if (playerElement.webkitRequestFullscreen) { 
+    } else if (playerElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
       playerElement.webkitRequestFullscreen();
-    } else if (playerElement.msRequestFullscreen) { 
+    } else if (playerElement.msRequestFullscreen) { /* IE/Edge */
       playerElement.msRequestFullscreen();
     }
   };
 
-  const handleEnd = () => {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { 
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { 
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { 
-      document.msExitFullscreen();
-    }
-    onClose();
-  };
-
-  useEffect(() => {
-    return () => handleEnd(); 
-  }, []);
 
   return (
     <div className="player" ref={playerRef}>
-      <YouTube videoId={trailerUrl} opts={opts} onReady={handleReady} />
+      <YouTube videoId={trailerUrl} opts={opts} onReady={handleReady}  />
     </div>
   );
 }

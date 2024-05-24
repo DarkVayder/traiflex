@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axios';
 import requests from './request';
+import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
-import Player from './Player';
-import './Banner.css';
 
 function Banner() {
   const [movie, setMovie] = useState({});
@@ -31,6 +30,15 @@ function Banner() {
   function truncate(str, n) {
     return str && str.length > n ? str.substr(0, n - 1) + '...' : str;
   }
+
+  const opts = {
+    height: '350',
+    width: '100%',
+    playerVars: {
+      autoplay: 1,
+      fullscreen: 1,
+    },
+  };
 
   const handleClick = () => {
     if (trailerUrl) {
@@ -67,11 +75,11 @@ function Banner() {
             <button className='banner__button'>More Info</button>
           </div>
 
-          <h1 className='banner__description'>{truncate(movie?.overview, 150)}</h1>
+          <h1 className='banner__description'>{truncate(movie?.overview, 45)}</h1>
         </div>
       </div>
 
-      {trailerUrl && <Player trailerUrl={trailerUrl} onClose={() => setTrailerUrl('')} />}
+      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
 
       <div className='banner__fadeBottom' />
     </header>
