@@ -32,11 +32,11 @@ function Banner() {
   }
 
   const opts = {
-    height: '350',
+    height: '100%',
     width: '100%',
     playerVars: {
       autoplay: 1,
-      fullscreen: 1,
+      fs: 1,
     },
   };
 
@@ -50,6 +50,18 @@ function Banner() {
           setTrailerUrl(urlParams.get('v'));
         })
         .catch((error) => console.log(error));
+    }
+  };
+
+  const onPlayerReady = (event) => {
+    event.target.playVideo();
+    const iframe = event.target.getIframe();
+    const requestFullScreen =
+      iframe.requestFullScreen ||
+      iframe.mozRequestFullScreen ||
+      iframe.webkitRequestFullScreen;
+    if (requestFullScreen) {
+      requestFullScreen.bind(iframe)();
     }
   };
 
@@ -77,11 +89,14 @@ function Banner() {
 
           <h1 className='banner__description'>{truncate(movie?.overview, 45)}</h1>
         </div>
+        <div className='banner__fadeBottom' />
       </div>
 
-      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
-
-      <div className='banner__fadeBottom' />
+      {trailerUrl && (
+        <div className='video-container'>
+          <YouTube videoId={trailerUrl} opts={opts} onReady={onPlayerReady} />
+        </div>
+      )}
     </header>
   );
 }
