@@ -108,7 +108,7 @@
 @media (max-width: 768px) {
     .nav {
         padding: 10px;
-        height: 14px; 
+        height: 16px; 
     }
 
     .nav__logo {
@@ -128,5 +128,9 @@
 
     .nav__link {
         display: none; 
+    }
+    .dropdownicon {
+        padding: -2px;
+        right: 31px;
     }
 }
