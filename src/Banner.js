@@ -7,6 +7,8 @@ import movieTrailer from 'movie-trailer';
 function Banner() {
   const [movie, setMovie] = useState({});
   const [trailerUrl, setTrailerUrl] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -19,13 +21,12 @@ function Banner() {
         );
       } catch (error) {
         console.error('Error fetching Netflix originals:', error);
+        setError('Error fetching Netflix originals. Please try again later.');
       }
     }
 
     fetchData();
   }, []);
-
-  console.log(movie);
 
   function truncate(str, n) {
     return str && str.length > n ? str.substr(0, n - 1) + '...' : str;
@@ -40,16 +41,24 @@ function Banner() {
     },
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (trailerUrl) {
       setTrailerUrl('');
     } else {
-      movieTrailer(movie?.title || movie?.name || movie?.original_name || '')
-        .then((url) => {
-          const urlParams = new URLSearchParams(new URL(url).search);
-          setTrailerUrl(urlParams.get('v'));
-        })
-        .catch((error) => console.log(error));
+      setLoading(true);
+      setError(null);
+      try {
+        const url = await movieTrailer(
+          movie?.title || movie?.name || movie?.original_name || ''
+        );
+        const urlParams = new URLSearchParams(new URL(url).search);
+        setTrailerUrl(urlParams.get('v'));
+      } catch (error) {
+        console.log(error);
+        setError('Error loading trailer. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -92,6 +101,8 @@ function Banner() {
         <div className='banner__fadeBottom' />
       </div>
 
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
       {trailerUrl && (
         <div className='video-container'>
           <YouTube videoId={trailerUrl} opts={opts} onReady={onPlayerReady} />
