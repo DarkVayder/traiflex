@@ -5,6 +5,7 @@ import notification from './notification.png';
 import search from './search.png';
 import './Nav.css';
 import { logout } from './Firebase';
+import { IoMdArrowDropdown } from "react-icons/io";
 
 function Nav() {
   const [show, setShow] = useState(false);
@@ -27,11 +28,11 @@ function Nav() {
 
   return (
     <div className={`nav ${show && "nav__black"}`}>
-      <img
-        className="nav__logo"
-        src={NetflixLogo}
-        alt='Netflix logo'
-      />
+        <img
+          className="nav__logo"
+          src={NetflixLogo}
+          alt='Netflix logo'
+        />
       <div className="nav__links">
         <p className="nav__link">TV Shows</p>
         <p className="nav__link">Movies</p>
@@ -54,6 +55,7 @@ function Nav() {
           src={AvatarLogo}
           alt='Avatar Logo'
         />
+        <IoMdArrowDropdown className='dropdownicon' />
         <div className='dropdown'>
           <p onClick={logout}>Sign Out of My Profile</p>
         </div>

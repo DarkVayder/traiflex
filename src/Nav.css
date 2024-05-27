@@ -20,17 +20,26 @@
     width: 80px;
     object-fit: contain;
     top: -0.1;
+    cursor: pointer;
 }
 
 .nav__avatar {
     cursor: pointer;
     right: 70px;
-    position: fixed;
+    border-radius: 4px;
     width: 30px;
     object-fit: contain;
     position: relative;
 }
 
+.dropdownicon {
+    color: white;
+    font-size: 17px;
+    margin-left: 5px;
+    cursor: pointer;
+    right: 80px;
+    position: relative;
+  }
 
 .dropdown {
     display: none;
@@ -61,6 +70,7 @@
     width: 32px;
     object-fit: contain;
     top: -0.1;
+    height: 25px;
 }
 
 .nav__search {
@@ -70,6 +80,7 @@
     width: 20px;
     object-fit: contain;
     top: 21px;
+    height: 20px;
 }
 
 .nav__links {

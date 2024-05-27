@@ -9,5 +9,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+  }
+  
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+  }
+  
+  iframe {
+    border: none;
+  }
+  
+  .player-info {
+    /* Add any additional styling you want for player info */
   }
   
