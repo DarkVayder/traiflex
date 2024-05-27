@@ -37,7 +37,7 @@ function Nav() {
         <p className="nav__link">TV Shows</p>
         <p className="nav__link">Movies</p>
         <p className="nav__link">Popular</p>
-        <p className="nav__link">My List</p>
+        <p className="nav__link MyList">My List</p>
       </div>
       <img
         className="nav__notification"
