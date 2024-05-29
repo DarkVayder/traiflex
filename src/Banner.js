@@ -4,12 +4,14 @@ import requests from './request';
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
 import back from "./back.png";
+import { useNavigate } from 'react-router-dom';
 
 function Banner() {
   const [movie, setMovie] = useState({});
   const [trailerUrl, setTrailerUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -106,7 +108,7 @@ function Banner() {
       {error && <p>{error}</p>}
       {trailerUrl && (
         <div className='video-container'>
-          <img src={back} alt='' />
+          <img src={back} alt='' onClick={()=>{navigate(-2)}} />
           <YouTube videoId={trailerUrl} opts={opts} onReady={onPlayerReady} />
         </div>
       )}
