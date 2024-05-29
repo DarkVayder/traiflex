@@ -3,6 +3,7 @@ import axios from './axios';
 import requests from './request';
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
+import back from "./back.png";
 
 function Banner() {
   const [movie, setMovie] = useState({});
@@ -105,6 +106,7 @@ function Banner() {
       {error && <p>{error}</p>}
       {trailerUrl && (
         <div className='video-container'>
+          <img src={back} alt='' />
           <YouTube videoId={trailerUrl} opts={opts} onReady={onPlayerReady} />
         </div>
       )}
