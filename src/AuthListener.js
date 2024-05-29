@@ -17,7 +17,6 @@ export const AuthListener = () => {
       }
     });
 
-
     return () => unsubscribe();
   }, [navigate]);
 
