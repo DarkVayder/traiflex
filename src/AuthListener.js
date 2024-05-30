@@ -1,22 +1,29 @@
 import { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from './Firebase';
+import { useDispatch } from 'react-redux';
+import { login, logout } from './features/user/userSlice';
 
 export const AuthListener = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user && location.pathname !== '/login') {
-        console.log("Logged Out");
+      if (user) {
+        dispatch(login({
+          email: user.email,
+          uid: user.uid,
+        }));
+      } else {
+        dispatch(logout());
         navigate('/login');
       }
     });
 
     return () => unsubscribe();
-  }, [navigate, location.pathname]);
+  }, [dispatch, navigate]);
 
   return null; 
 };
