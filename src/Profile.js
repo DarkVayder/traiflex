@@ -4,6 +4,7 @@ import './Profile.css';
 import avatar from './Avatar.png';
 import Nav from './Nav';
 import { selectUser } from "./features/user/userSlice";
+import { auth } from "./Firebase"
 
 const Profile = () => {
   const user = useSelector(selectUser);
@@ -17,6 +18,10 @@ const Profile = () => {
           <img src={avatar} alt='Avatar' className='profile_avatar' />
           <div className='profile_info'>
             <h2>{user?.email}</h2>
+            <div className="profile__sub">
+              <button onClick = {() => auth.signOut()} 
+              className="profile__logout">Log Out</button>
+            </div>
           </div>
         </div>
       </div>
