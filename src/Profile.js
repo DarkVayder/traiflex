@@ -19,7 +19,7 @@ const Profile = () => {
           <div className='profile_info'>
             <h2>{user?.email}</h2>
             <div className="profile__sub">
-              <h3>Plans</h3>
+              <h3>Preminum</h3>
               <button onClick = {() => auth.signOut()} 
               className="profile__logout">Log Out</button>
             </div>
