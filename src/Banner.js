@@ -4,14 +4,14 @@ import requests from './request';
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
 import back from "./back.png";
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function Banner() {
   const [movie, setMovie] = useState({});
   const [trailerUrl, setTrailerUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchData() {
@@ -65,15 +65,9 @@ function Banner() {
     }
   };
 
-  const onPlayerReady = (event) => {
-    event.target.playVideo();
-    const iframe = event.target.getIframe();
-    const requestFullScreen =
-      iframe.requestFullScreen ||
-      iframe.mozRequestFullScreen ||
-      iframe.webkitRequestFullScreen;
-    if (requestFullScreen) {
-      requestFullScreen.bind(iframe)();
+  const handleBack = () => {
+    if (location.state && location.state.from) {
+      window.history.back();
     }
   };
 
@@ -108,8 +102,8 @@ function Banner() {
       {error && <p>{error}</p>}
       {trailerUrl && (
         <div className='video-container'>
-          <img src={back} alt='' onClick={()=>{navigate(-2)}} />
-          <YouTube videoId={trailerUrl} opts={opts} onReady={onPlayerReady} />
+          <img src={back} alt='' onClick={handleBack} />
+          <YouTube videoId={trailerUrl} opts={opts} />
         </div>
       )}
     </header>
