@@ -1,13 +1,15 @@
 import React from 'react';
 import './Home.css';
+import Nav from "../components/Nav";
+
 import requests from '../request';
 
 
 function App() {
   return (
     <div className="app">
-    {/*  <Nav />
-      <Banner />
+     <Nav />
+      {/* <Banner />
      <Row title="Netflix Originals" fetchUrl={requests.fetchNetflixOriginals} isLargeRow />
 <Row title="Trending right Now" fetchUrl={requests.fetchTrending} />
 <Row title="Today's top pick for you" fetchUrl={requests.fetchTopRated} />
