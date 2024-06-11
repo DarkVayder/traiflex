@@ -1,0 +1,145 @@
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    height: 18.5px;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    transition: background-color 0.5s ease-in;
+}
+
+.nav__black {
+    background-color: black;
+}
+
+.nav__logo {
+    position: fixed;
+    left: 50px;
+    width: 80px;
+    object-fit: contain;
+    top: -0.1;
+    cursor: pointer;
+}
+
+.nav__avatar {
+    cursor: pointer;
+    right: 70px;
+    border-radius: 4px;
+    width: 30px;
+    object-fit: contain;
+    position: relative;
+}
+
+.dropdownicon {
+    color: white;
+    font-size: 17px;
+    margin-left: 5px;
+    cursor: pointer;
+    right: 80px;
+    position: relative;
+  }
+
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+  
+  
+  .nav__avatar-container:hover .dropdown {
+    display: block;
+  }
+  
+  .dropdown p {
+    color: white;
+    margin: 0;
+    cursor: pointer;
+  }
+
+.nav__notification {
+    cursor: pointer;
+    position: fixed;
+    right: 110px;
+    width: 32px;
+    object-fit: contain;
+    top: -0.1;
+    height: 25px;
+}
+
+.nav__search {
+    cursor: pointer;
+    position: fixed;
+    right: 155px;
+    width: 20px;
+    object-fit: contain;
+    top: 21px;
+    height: 20px;
+}
+
+.nav__links {
+    display: flex;
+    align-items: center;
+}
+
+.nav__link {
+    margin-right: 20px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease-in;
+    position: relative;
+    left: 65%;
+    transform: translateX(-50%);
+    top: 10px;
+    justify-content: space-between;
+}
+
+.nav__link:hover {
+    color: #e50914;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        padding: 10px;
+        height: 16px; 
+    }
+
+    .nav__logo {
+        width: 70px;
+        left: 20px; 
+    }
+
+    .nav__avatar{
+        width: 24px;
+        right: 20px; 
+    }
+
+    .nav__notification,
+    .nav__search{
+        display: none;
+    }
+
+    .nav__link {
+        display: none; 
+    }
+
+    .nav__link.MyList {
+        display: block;
+        left: 120px; 
+        margin-left: auto;
+        margin-right: 20px;
+        top: 9px;
+      }
+
+    .dropdownicon {
+        padding: -2px;
+        right: 31px;
+    }
+}
