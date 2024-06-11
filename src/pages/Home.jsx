@@ -4,6 +4,7 @@ import backgroundImage from "../assets/hero_banner.jpg";
 import Movielogo from "../assets/hero_title.png";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import styled from "styled-components";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,21 +22,90 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="app">
-      <Nav isScrolled={isScrolled} />
-      <img src={backgroundImage} alt="background" 
-      className="background-image" />  
-      <div className="logo">
-        <img src={Movielogo} alt="Movie Logo"/> 
-        <div className="buttons flex">
-          <button className="flex j-center a center">
-            <FaPlay /> Play 
-          </button>  
-          <button className="flex j-center a center">
-            <AiOutlineInfoCircle /> More Info
-          </button> 
-        </div> 
-      </div>   
-    </div>
+    <Container>
+      <div className="app">
+        <Nav isScrolled={isScrolled} />
+        <div className="hero">
+          <img src={backgroundImage} alt="background" className="background-image" />
+          <div className="container">
+            <div className="logo">
+              <img src={Movielogo} alt="Movie Logo" />
+            </div>
+            <div className="buttons flex">
+              <button className="play flex j-center a-center">
+                <FaPlay /> Play
+              </button>
+              <button className="info flex j-center a-center">
+                <AiOutlineInfoCircle /> More Info
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  background-color: black;
+  .hero {
+    position: relative;
+  }
+  .background-image {
+    filter: brightness(60%);
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+  }
+  .container {
+    position: absolute;
+    bottom: 5rem;
+    left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .logo {
+    img {
+      width: 100%;
+      max-width: 40rem;
+      margin-bottom: 2rem;
+    }
+  }
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    button {
+      font-size: 1.4rem;
+      gap: 1rem;
+      border-radius: 0.2rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    .play {
+      background-color: #e50914;
+      color: white;
+      &:hover {
+        background-color: #f40612;
+      }
+    }
+    .info {
+      background-color: rgba(109, 109, 110, 0.7);
+      color: white;
+      &:hover {
+        background-color: rgba(109, 109, 110, 0.5);
+      }
+      svg {
+        font-size: 1.4rem;
+      }
+    }
+  }
+`;

@@ -141,11 +141,11 @@ const Container = styled.div`
             gap: 1rem;
 
             .search {
+                background-color: inherit;
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
                 padding: 0.3rem;
-                background-color: rgba(0, 0, 0, 0.75);
                 border-radius: 5px;
                 transition: width 0.3s ease;
 
