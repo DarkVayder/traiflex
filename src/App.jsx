@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUser, login, logout } from './features/user/userSlice';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './Utilities/Firebase';
-import { AuthListener } from './AuthListener';
+import { AuthListener } from './Utilities/AuthListener';
 
 function App () {
  

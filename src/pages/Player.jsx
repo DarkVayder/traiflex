@@ -45,7 +45,7 @@ const Container = styled.div`
             align-items: center;
             cursor: pointer;
             color: white;
-            font-size: 1.5rem;
+            font-size: 2rem;
             svg {
                 margin-right: 0.5rem;
             }

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from './Utilities/Firebase';
+import { auth } from './Firebase';
 import { useDispatch } from 'react-redux';
-import { login, logout } from './features/user/userSlice';
+import { login, logout } from '../features/user/userSlice';
 
 export const AuthListener = () => {
   const navigate = useNavigate();
