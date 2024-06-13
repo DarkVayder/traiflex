@@ -49,7 +49,10 @@ export const fetchMovies = createAsyncThunk(
   "netflix/trending", 
   async ({ type }, thunkApi) => { 
     const { netflix: { genres } } = thunkApi.getState();
-    const data = await getRawData(`${TMDB_BASE_URL}/trending/${type}/week?api_key=${API_KEY}`, genres, true);
+    const data = await getRawData
+    (`${TMDB_BASE_URL}/trending/${type}/week?api_key=${API_KEY}`, 
+      genres, 
+      true);
     return data;
   }
 );

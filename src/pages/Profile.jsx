@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import avatar from '../assets/Avatar.png';
 import { auth } from '../Utilities/Firebase';
 import profilebackground from "../assets/ProfileBackground.jpg";
+import logo from "../assets/Netflix logo.png";
 
 const Profile = () => {
-  const userEmail = auth.currentUser ? auth.currentUser.email : 'User Email';
+  const [userEmail, setUserEmail] = useState('User Email');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUserEmail(user.email);
+      } else {
+        navigate('/login'); // Navigate to login if not authenticated
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
 
   const handleSignOut = async () => {
     try {
       await auth.signOut();
+      navigate('/login');
     } catch (error) {
       console.error('Error signing out: ', error);
     }
@@ -17,6 +33,9 @@ const Profile = () => {
 
   return (
     <Container>
+      <div className='logo'>
+        <img onClick={() => navigate('/')} src={logo} alt="Netflix Logo" />
+      </div>
       <div className="profile_body">
         <h1>My Profile</h1>
         <div className="profile_details">
@@ -47,6 +66,17 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
+
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  .logo img {
+    height: 4.5rem;
+    cursor: pointer;
+  }
 
   .profile_body {
     display: flex;
@@ -91,8 +121,8 @@ const Container = styled.div`
     border: none;
     font-weight: 600;
     &:hover {
-    opacity: 0.5;
-    background-color: rgba(109, 109, 110, 0.7);
+      opacity: 0.5;
+      background-color: rgba(109, 109, 110, 0.7);
     }
   }
 
