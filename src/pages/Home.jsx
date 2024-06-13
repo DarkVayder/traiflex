@@ -23,9 +23,11 @@ export default function Home() {
 
 
   useEffect(() => {
-    if(genresLoaded) dispatch(fetchMovies({ type: 'all'}))
-  })
-
+    if (genresLoaded) {
+      dispatch(fetchMovies({ type: 'all' }));
+    }
+  }, [genresLoaded, dispatch]);
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY !== 0);
@@ -38,7 +40,7 @@ export default function Home() {
     };
   }, 
 []);
-
+console.log(movies);
   return (
     <Container>
       <div className="app">
