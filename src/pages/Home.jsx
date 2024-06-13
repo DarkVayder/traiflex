@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, getGenres } from '../Utilities/store';
 import  Slider from "../components/Slider";
-
+import Footer from "../components/Footer";
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function Home() {
       dispatch(fetchMovies({ type: 'all' }));
     }
   }, [genresLoaded, dispatch]);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY !== 0);
@@ -63,6 +63,7 @@ console.log(movies);
         </div>
       </div>
       <Slider movies={movies} />
+      <Footer />
     </Container>
   );
 }

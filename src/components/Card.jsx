@@ -1,57 +1,169 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { IoPlayCircleSharp } from "react-icons/io5";
+import { AiOutlinePlus } from "react-icons/ai";
+import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
+import { BiChevronDown } from "react-icons/bi";
+import { BsCheck } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import loading from "../assets/loading.gif"
 
-function Card({ movieData, isLiked = false }) {
-  if (!movieData) {
-    return null; 
-  }
-
-  const { image, name, genres } = movieData;
+export default React.memo(function Card({ index, movieData, isLiked = false }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [isHovered, setIsHovered] = useState(false);
+  const [email, setEmail] = useState(undefined);
 
   return (
-    <Container>
-      {image ? (
-        <img src={`https://image.tmdb.org/t/p/w500${image}`} alt='Movie Poster' />
-      ) : (
-        <p>No image available</p>
+    <Container
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <img
+        src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
+        alt="card"
+        onClick={() => navigate("/player")}
+      />
+
+      {isHovered && (
+        <div className="hover">
+          <div className="image-video-container">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
+              alt="card"
+              onClick={() => navigate("/player")}
+            />
+            <iframe 
+              src="https://www.youtube.com/embed/80dqOwAOhbo?autoplay=1" 
+              title="YouTube video player" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            />
+          </div>
+          <div className="info-container flex column">
+            <h3 className="name" onClick={() => navigate("/player")}>
+              {movieData.name}
+            </h3>
+            <div className="icons flex j-between">
+              <div className="controls flex">
+                <IoPlayCircleSharp
+                  title="Play"
+                  onClick={() => navigate("/player")}
+                />
+                <RiThumbUpFill title="Like" />
+                <RiThumbDownFill title="Dislike" />
+                {isLiked ? (
+                  <BsCheck
+                    title="Remove from List"
+                    onClick={() =>
+                      dispatch(
+                        // removeMovieFromLiked({ movieId: movieData.id, email })
+                      )
+                    }
+                  />
+                ) : (
+                  <AiOutlinePlus
+                    title="Add to my list"
+                    // onClick={addToList}
+                  />
+                )}
+              </div>
+              <div className="info">
+                <BiChevronDown title="More Info" />
+              </div>
+            </div>
+            <div className="genres flex">
+              <ul className="flex">
+                {movieData.genres.map((genre, index) => (
+                  <li key={index}>{genre}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       )}
-      <div className="info">
-        <h3>{name}</h3>
-        <p>{genres.join(', ')}</p>
-      </div>
     </Container>
   );
-}
+});
 
 const Container = styled.div`
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #444;
-  color: white;
-  max-width: 200px;
-  margin: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
+  max-width: 230px;
+  width: 230px;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
   img {
+    border-radius: 0.2rem;
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: 100%;
+    z-index: 10;
   }
-
-  .info {
-    padding: 0.5rem;
-
-    h3 {
-      margin: 0.5rem 0;
-      font-size: 1rem;
+  .hover {
+    z-index: 99;
+    height: max-content;
+    width: 20rem;
+    position: absolute;
+    top: -18vh;
+    left: 0;
+    border-radius: 0.3rem;
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
+    background-color: #181818;
+    transition: 0.3s ease-in-out;
+    animation: hoverAnimation 0.5s ease-in-out forwards;
+    animation-delay: 0.5s;
+    .image-video-container {
+      position: relative;
+      height: 140px;
+      img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 0.3rem;
+        top: 0;
+        z-index: 4;
+        position: absolute;
+      }
+      iframe {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 0.3rem;
+        top: 0;
+        z-index: 5;
+        position: absolute;
+      }
     }
-
-    p {
-      margin: 0;
-      font-size: 0.8rem;
-      color: #bbb;
+    .info-container {
+      padding: 1rem;
+      gap: 0.5rem;
+    }
+    .icons {
+      .controls {
+        display: flex;
+        gap: 1rem;
+      }
+      svg {
+        font-size: 2rem;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        &:hover {
+          color: #b8b8b8;
+        }
+      }
+    }
+    .genres {
+      ul {
+        display: flex;
+        gap: 1rem;
+        li {
+          padding-right: 0.7rem;
+          &:first-of-type {
+            list-style-type: none;
+          }
+        }
+      }
     }
   }
 `;
-
-export default Card;

@@ -1,33 +1,40 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import BackgroundImage from '../components/BackgroundImage';
-import Header from '../components/Header';
+import logo from '../assets/Netflix logo.png';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../Utilities/Firebase'; 
 import { useNavigate } from 'react-router-dom';
+import loadingGif from '../assets/loading.gif'; 
 
 export default function Login() {
   const [formValues, setFormValues] = useState({
     email: '',
     password: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogIn = async () => {
+    setIsLoading(true);
     try {
       const { email, password } = formValues;
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/"); 
     } catch (error) {
       console.error('Error logging in:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <Container>
       <BackgroundImage />
+      <div className='logo'>
+        <img src={logo} alt="Netflix Logo" />
+      </div>
       <div className="content">
-        <Header />
         <div className="form-container flex column a-center j-center">
           <div className="form flex column a-center j-center">
             <div className="title">
@@ -59,7 +66,9 @@ export default function Login() {
                 }
               />
             </div>
-            <button onClick={handleLogIn}>Log In</button>
+            <button onClick={handleLogIn} disabled={isLoading}>
+              {isLoading ? <img src={loadingGif} alt="Loading..." /> : 'Log In'}
+            </button>
             <div className="extras flex a-center j-between">
               <div className="remember-me flex a-center">
                 <input type="checkbox" id="rememberMe" />
@@ -80,6 +89,16 @@ const Container = styled.div`
   position: relative;
   height: 100vh;
   width: 100vw;
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  .logo img {
+    height: 4.5rem;
+    cursor: pointer;
+  }
   .content {
     position: absolute;
     top: 0;
@@ -138,8 +157,19 @@ const Container = styled.div`
           font-weight: 500;
           cursor: pointer;
           margin-bottom: 1.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           &:hover {
             background-color: #f40612;
+          }
+          &:disabled {
+            background-color: #888;
+            cursor: not-allowed;
+          }
+          img {
+            width: 1.5rem;
+            height: 1.5rem;
           }
         }
         .extras {
