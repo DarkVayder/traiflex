@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Card from './Card';
 
 export default function CardSlider({ data, title }) {
   return (
@@ -7,13 +8,7 @@ export default function CardSlider({ data, title }) {
       <h2>{title}</h2>
       <div className="slider">
         {data.map((movie, index) => (
-          <div className="card" key={movie.id}>
-            <img src={`https://image.tmdb.org/t/p/w500${movie.image}`} alt={movie.name} />
-            <div className="info">
-              <h3>{movie.name}</h3>
-              <p>{movie.genres.join(', ')}</p>
-            </div>
-          </div>
+          <Card movieData={movie} key={movie.id} />
         ))}
       </div>
     </Container>
@@ -21,44 +16,15 @@ export default function CardSlider({ data, title }) {
 }
 
 const Container = styled.div`
-  margin-bottom: 2rem;
-  
+  margin: 2rem 0;
   h2 {
-    margin-left: 1rem;
     color: white;
+    margin-bottom: 1rem;
   }
-
   .slider {
     display: flex;
-    overflow-x: auto;
+    overflow-x: scroll;
     padding: 1rem;
     gap: 1rem;
-  }
-
-  .card {
-    min-width: 200px;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #444;
-    color: white;
-
-    img {
-      width: 100%;
-      object-fit: cover;
-    }
-
-    .info {
-      padding: 1rem;
-      
-      h3 {
-        margin: 0 0 0.5rem 0;
-      }
-      
-      p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: #bbb;
-      }
-    }
   }
 `;
