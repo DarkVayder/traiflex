@@ -17,7 +17,9 @@ export default function Signup() {
   const handleSignUp = async () => {
     try {
       const { email, password } = formValues;
+      console.log('Signing up with:', email, password); 
       await createUserWithEmailAndPassword(auth, email, password);
+      console.log('Sign up successful, navigating to home page'); 
       navigate("/"); 
     } catch (error) {
       console.error('Error signing up:', error);

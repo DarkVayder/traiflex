@@ -1,29 +1,25 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from './Firebase';
-import { useDispatch } from 'react-redux';
-import { login, logout } from '../features/user/userSlice';
+import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { auth } from '../Utilities/Firebase';
 
 export const AuthListener = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        dispatch(login({
-          email: user.email,
-          uid: user.uid,
-        }));
+        if (location.pathname === '/login' || location.pathname === '/signup') {
+          navigate("/");
+        }
       } else {
-        dispatch(logout());
-        navigate('/login');
+        if (location.pathname !== '/login' && location.pathname !== '/signup') {
+          navigate("/login");
+        }
       }
     });
-
     return () => unsubscribe();
-  }, [dispatch, navigate]);
+  }, [navigate, location.pathname]);
 
-  return null; 
+  return null;
 };

@@ -9,18 +9,17 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthListener } from './Utilities/AuthListener';
 
-function App () {
- 
+function App() {
   return (
     <BrowserRouter>
       <ToastContainer theme="dark" />
       <AuthListener />
       <Routes>
-            <Route exact path="/Login" element={<Login />} />
-            <Route exact path="/Signup" element={<Signup />} />
-            <Route exact path="/player" element={<Player />} />
-            <Route exact path="/Profile" element={<Profile />} />
-            <Route exact path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/player" element={<Player />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
