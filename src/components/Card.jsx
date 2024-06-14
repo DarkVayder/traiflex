@@ -59,14 +59,14 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
                     title="Remove from List"
                     onClick={() =>
                       dispatch(
-                        // removeMovieFromLiked({ movieId: movieData.id, email })
+                        
                       )
                     }
                   />
                 ) : (
                   <AiOutlinePlus
                     title="Add to my list"
-                    // onClick={addToList}
+                 
                   />
                 )}
               </div>
