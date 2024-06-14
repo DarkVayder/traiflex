@@ -29,59 +29,65 @@ export default function Login() {
   };
 
   return (
-    <Container>
-      <BackgroundImage />
-      <div className='logo'>
-        <img src={logo} alt="Netflix Logo" />
-      </div>
-      <div className="content">
-        <div className="form-container flex column a-center j-center">
-          <div className="form flex column a-center j-center">
-            <div className="title">
-              <h3>Sign In</h3>
-            </div>
-            <div className="container flex column">
-              <input
-                type="email"
-                placeholder="Email Address"
-                name="email"
-                value={formValues.email}
-                onChange={(e) =>
-                  setFormValues({
-                    ...formValues,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={formValues.password}
-                onChange={(e) =>
-                  setFormValues({
-                    ...formValues,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              />
-            </div>
-            <button onClick={handleLogIn} disabled={isLoading}>
-              {isLoading ? <img src={loadingGif} alt="Loading..." /> : 'Log In'}
-            </button>
-            <div className="extras flex a-center j-between">
-              <div className="remember-me flex a-center">
-                <input type="checkbox" id="rememberMe" />
-                <label htmlFor="rememberMe">Remember me</label>
+    isLoading ? (
+      <LoadingContainer>
+        <img src={loadingGif} alt="Loading" />
+      </LoadingContainer>
+    ) : (
+      <Container>
+        <BackgroundImage />
+        <div className='logo'>
+          <img src={logo} alt="Netflix Logo" />
+        </div>
+        <div className="content">
+          <div className="form-container flex column a-center j-center">
+            <div className="form flex column a-center j-center">
+              <div className="title">
+                <h3>Sign In</h3>
               </div>
-              <div className="need-help">
-                <a href=" ">Need help?</a>
+              <div className="container flex column">
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  name="email"
+                  value={formValues.email}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={formValues.password}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <button onClick={handleLogIn} disabled={isLoading}>
+                {isLoading ? <img src={loadingGif} alt="Loading..." /> : 'Log In'}
+              </button>
+              <div className="extras flex a-center j-between">
+                <div className="remember-me flex a-center">
+                  <input type="checkbox" id="rememberMe" />
+                  <label htmlFor="rememberMe">Remember me</label>
+                </div>
+                <div className="need-help">
+                  <a href=" ">Need help?</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    )
   );
 }
 
@@ -202,3 +208,13 @@ const Container = styled.div`
     }
   }
 `;
+
+const LoadingContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+`;
+
