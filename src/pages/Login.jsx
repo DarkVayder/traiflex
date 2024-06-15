@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../Utilities/Firebase';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import loadingGif from '../assets/loading.gif';
 import BackgroundImage from '../components/BackgroundImage';
 import logo from '../assets/Netflix logo.png';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../Utilities/Firebase'; 
-import { useNavigate } from 'react-router-dom';
-import loadingGif from '../assets/loading.gif'; 
 
 export default function Login() {
   const [formValues, setFormValues] = useState({
@@ -20,74 +22,81 @@ export default function Login() {
     try {
       const { email, password } = formValues;
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/"); 
+      navigate('/');
     } catch (error) {
-      console.error('Error logging in:', error);
+      console.error('Error logging in:', error.message);
+      toast.error('Invalid email or password. Please try again.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    isLoading ? (
-      <LoadingContainer>
-        <img src={loadingGif} alt="Loading" />
-      </LoadingContainer>
-    ) : (
-      <Container>
-        <BackgroundImage />
-        <div className='logo'>
-          <img src={logo} alt="Netflix Logo" />
-        </div>
-        <div className="content">
-          <div className="form-container flex column a-center j-center">
-            <div className="form flex column a-center j-center">
-              <div className="title">
-                <h3>Sign In</h3>
-              </div>
-              <div className="container flex column">
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  name="email"
-                  value={formValues.email}
-                  onChange={(e) =>
-                    setFormValues({
-                      ...formValues,
-                      [e.target.name]: e.target.value,
-                    })
-                  }
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  value={formValues.password}
-                  onChange={(e) =>
-                    setFormValues({
-                      ...formValues,
-                      [e.target.name]: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <button onClick={handleLogIn} disabled={isLoading}>
-                {isLoading ? <img src={loadingGif} alt="Loading..." /> : 'Log In'}
-              </button>
-              <div className="extras flex a-center j-between">
-                <div className="remember-me flex a-center">
-                  <input type="checkbox" id="rememberMe" />
-                  <label htmlFor="rememberMe">Remember me</label>
+    <>
+      {isLoading ? (
+        <LoadingContainer>
+          <img src={loadingGif} alt="Loading" />
+        </LoadingContainer>
+      ) : (
+        <Container>
+          <BackgroundImage />
+          <div className='logo'>
+            <img src={logo} alt="Netflix Logo" />
+          </div>
+          <div className="content">
+            <div className="form-container flex column a-center j-center">
+              <div className="form flex column a-center j-center">
+                <div className="title">
+                  <h3>Sign In</h3>
                 </div>
-                <div className="need-help">
-                  <a href=" ">Need help?</a>
+                <div className="container flex column">
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    name="email"
+                    value={formValues.email}
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={formValues.password}
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+                <button onClick={handleLogIn} disabled={isLoading}>
+                  {isLoading ? (
+                    <img src={loadingGif} alt="Loading..." />
+                  ) : (
+                    'Log In'
+                  )}
+                </button>
+                <div className="extras flex a-center j-between">
+                  <div className="remember-me flex a-center">
+                    <input type="checkbox" id="rememberMe" />
+                    <label htmlFor="rememberMe">Remember me</label>
+                  </div>
+                  <div className="need-help">
+                    <a href=" ">Need help?</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </Container>
-    )
+        </Container>
+      )}
+    </>
   );
 }
 
@@ -217,4 +226,3 @@ const LoadingContainer = styled.div`
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.75);
 `;
-

@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Player from "./pages/Player";
 import Profile from "./pages/Profile";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { AuthListener } from './Utilities/AuthListener';
 import Movies from "./pages/Movies";
 import Series from "./pages/Series";
-import HelpCenter from "./components/HelpCenter"; 
+import HelpCenter from "./components/HelpCenter";
 
 function App() {
   return (

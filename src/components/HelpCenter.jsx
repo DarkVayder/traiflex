@@ -8,7 +8,7 @@ export default function HelpCenter() {
   return (
     <HelpCenterContainer>
       <HelpCenterTitle>
-        How Can i be off Assistance?
+        How Can i be of Assistance?
       </HelpCenterTitle>
       <HelpCenterDescription>
         Top of the day to you
