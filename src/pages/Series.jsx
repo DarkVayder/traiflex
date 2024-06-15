@@ -38,39 +38,50 @@ export default function Series() {
 
   return (
     <Container>
-      <div className='nav'>
+      <NavWrapper>
         <Nav isScrolled={isScrolled} />
-      </div>
-      <div className='genre-selector'>
+      </NavWrapper>
+      <GenreSelector>
         <SelectGenre genres={genres} type='tv' />
-      </div>
-      <div className='data'>
+      </GenreSelector>
+      <Content>
         {
           movies.length ? <Slider movies={movies} /> : <NotAvailable />
         }
-      </div>
+      </Content>
     </Container>
   );
 }
 
 const Container = styled.div`
-  .nav {
-    position: fixed;
-    width: 100%;
-    z-index: 10;
-  }
-  .genre-selector {
-    margin-top: 5rem;
-    display: flex;
-    justify-content: left;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-  .data {
-    margin-top: 8rem;
-    .not-available {
-      text-align: center;
-      margin-top: 4rem;
-    }
+  background-color: #141414;
+  min-height: 100vh;
+  color: #fff;
+`;
+
+const NavWrapper = styled.div`
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+`;
+
+const GenreSelector = styled.div`
+  margin-top: 5rem;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid #333;
+`;
+
+const Content = styled.div`
+  margin-top: 1rem;  /* Reduced space between genre selector and slider */
+  padding: 2rem;
+
+  .not-available {
+    text-align: center;
+    margin-top: 4rem;
   }
 `;
+
+
