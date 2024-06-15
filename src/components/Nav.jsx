@@ -12,7 +12,7 @@ import { signOut } from 'firebase/auth';
 export default function Nav({ isScrolled }) {
     const links = [
         { name: "Home", link: "/" },
-        { name: "TV Shows", link: "/tv" },
+        { name: "TV Shows", link: "/Series" },
         { name: "Movies", link: "/movies" },
         { name: "My List", link: "/mylist" },
     ];
