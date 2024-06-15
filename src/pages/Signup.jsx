@@ -3,8 +3,12 @@ import styled from 'styled-components';
 import BackgroundImage from '../components/BackgroundImage';
 import Header from '../components/Header';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../Utilities/Firebase'; 
+import { auth } from '../Utilities/Firebase';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import loadingGif from '../assets/loading.gif';
+import logo from '../assets/Netflix logo.png';
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,72 +16,87 @@ export default function Signup() {
     email: '',
     password: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
+    setIsLoading(true);
     try {
       const { email, password } = formValues;
-      console.log('Signing up with:', email, password); 
       await createUserWithEmailAndPassword(auth, email, password);
-      console.log('Sign up successful, navigating to home page'); 
-      navigate("/"); 
+      toast.success('Sign up successful!');
+      navigate('/');
     } catch (error) {
-      console.error('Error signing up:', error);
+      console.error('Error signing up:', error.message);
+      toast.error('Failed to sign up. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <Container>
-      <BackgroundImage />
-      <Header Login={true} />
-      <div className="body flex column a-center j-center">
-        <div className="text flex column a-center">
-          <h1>Unlimited Movies, TV shows and more</h1>
-          <h4>Watch anywhere. Cancel anytime</h4>
-          <h6>
-            Ready to watch? Enter your email to create or restart your membership.
-          </h6>
-        </div>
-        <div className="form">
-          <div className="input-container">
-            <input
-              type="email"
-              placeholder="Email Address"
-              name="email"
-              value={formValues.email}
-              onChange={(e) =>
-                setFormValues({
-                  ...formValues,
-                  [e.target.name]: e.target.value,
-                })
-              }
-            />
-            {!showPassword && (
-              <button onClick={() => setShowPassword(true)}>Get Started</button>
-            )}
+    <>
+      {isLoading ? (
+        <LoadingContainer>
+          <img src={loadingGif} alt="Loading" />
+        </LoadingContainer>
+      ) : (
+        <Container>
+          <BackgroundImage />
+          <Header Login={true} />
+          <div className="body flex column a-center j-center">
+            <div className="text flex column a-center">
+              <h1>Unlimited Movies, TV shows and more</h1>
+              <h4>Watch anywhere. Cancel anytime</h4>
+              <h6>
+                Ready to watch? Enter your email to create or restart your
+                membership.
+              </h6>
+            </div>
+            <div className="form">
+              <div className="input-container">
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  name="email"
+                  value={formValues.email}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                />
+                {!showPassword && (
+                  <button onClick={() => setShowPassword(true)}>
+                    Get Started
+                  </button>
+                )}
+              </div>
+              {showPassword && (
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={formValues.password}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="button-container flex column a-center j-center">
+              <button onClick={handleSignUp} className="signup-button">
+                Sign Up
+              </button>
+            </div>
           </div>
-          {showPassword && (
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={formValues.password}
-              onChange={(e) =>
-                setFormValues({
-                  ...formValues,
-                  [e.target.name]: e.target.value,
-                })
-              }
-            />
-          )}
-        </div>
-        <div className="button-container flex column a-center j-center">
-          <button onClick={handleSignUp} className="signup-button">
-            Sign Up
-          </button>
-        </div>
-      </div>
-    </Container>
+        </Container>
+      )}
+    </>
   );
 }
 
@@ -169,4 +188,13 @@ const Container = styled.div`
       }
     }
   }
+`;
+
+const LoadingContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
 `;
