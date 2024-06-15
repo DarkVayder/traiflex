@@ -1,9 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaFacebookF, FaXTwitter, FaWhatsapp } from 'react-icons/fa6';
-import { FaYoutube } from "react-icons/fa";
+import { FaYoutube } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 function Footer() {
+  const footerLinks = [
+    { name: "Media Centre", path: "/help-center" },
+    { name: "Investor Relations", path: "/help-center" },
+    { name: "Jobs", path: "/help-center" },
+    { name: "Terms of Use", path: "/help-center" },
+    { name: "Cookie Preferences", path: "/help-center" },
+    { name: "Legal Notice", path: "/help-center" },
+    { name: "About Us", path: "/help-center" },
+    { name: "Contact Us", path: "/help-center" },
+    { name: "FAQ", path: "/help-center" },
+    { name: "Privacy Policy", path: "/help-center" },
+    { name: "Terms & Conditions", path: "/help-center" },
+    { name: "Help Centre", path: "/help-center" },
+  ];
+
   return (
     <FooterContainer>
       <FooterIcons>
@@ -13,18 +29,13 @@ function Footer() {
         <FaXTwitter aria-label="Twitter" />
       </FooterIcons>
       <FooterLinks>
-        <FooterLinkItem>Media Centre</FooterLinkItem>
-        <FooterLinkItem>Investor Relations</FooterLinkItem>
-        <FooterLinkItem>Jobs</FooterLinkItem>
-        <FooterLinkItem>Terms of Use</FooterLinkItem>
-        <FooterLinkItem>Cookie Preferences</FooterLinkItem>
-        <FooterLinkItem>Legal Notice</FooterLinkItem>
-        <FooterLinkItem>About Us</FooterLinkItem>
-        <FooterLinkItem>Contact Us</FooterLinkItem>
-        <FooterLinkItem>FAQ</FooterLinkItem>
-        <FooterLinkItem>Privacy Policy</FooterLinkItem>
-        <FooterLinkItem>Terms & Conditions</FooterLinkItem>
-        <FooterLinkItem>Help Centre</FooterLinkItem>
+        {footerLinks.map((link) => (
+          <FooterLinkItem key={link.name}>
+            <Link to={link.path} style={{ color: 'inherit', textDecoration: 'none' }}>
+              {link.name}
+            </Link>
+          </FooterLinkItem>
+        ))}
       </FooterLinks>
       <CopyrightText>1997-2024 Netflix Inc.</CopyrightText>
     </FooterContainer>
@@ -73,6 +84,5 @@ const CopyrightText = styled.p`
   width: 100%;
   cursor: none;
 `;
-
 
 export default Footer;
