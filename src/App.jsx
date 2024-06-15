@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthListener } from './Utilities/AuthListener';
 import Movies from "./pages/Movies"
+import Series from "./pages/Series"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/player" element={<Player />} />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/Series" element={<Series />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/" element={<Home />} />
       </Routes>
