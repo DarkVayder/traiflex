@@ -1,10 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-
-export default function SelectGenre({ genres, type }) {
+import { useDispatch } from "react-redux";
+import { fetchDataByGenre } from "../Utilities/store";
  
+export default function SelectGenre({ genres, type }) {
+
+  const dispatch = useDispatch();
+
   return (
-    <Select>
+    <Select className="flex" onChange={(e) => {
+      dispatch(
+        fetchDataByGenre({
+          genres,
+          genre: e.target.value,
+          type,
+        })
+      );
+    }}>
       {genres.map((genre) => {
         return (
           <option value={genre.id} key={genre.id}>

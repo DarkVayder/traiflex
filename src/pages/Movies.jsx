@@ -42,7 +42,7 @@ export default function Movies() {
         <Nav isScrolled={isScrolled} />
       </div>
       <div className='genre-selector'>
-        <SelectGenre genres={genres} />
+        <SelectGenre genres={genres} type='movie' />
       </div>
       <div className='data'>
         {
