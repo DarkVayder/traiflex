@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IoPlayCircleSharp } from "react-icons/io5";
@@ -7,13 +7,36 @@ import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
 import { BiChevronDown } from "react-icons/bi";
 import { BsCheck } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import loading from "../assets/loading.gif"
+import axios from "axios";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../Utilities/Firebase"; // Correctly import the auth object
 
 export default React.memo(function Card({ index, movieData, isLiked = false }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isHovered, setIsHovered] = useState(false);
   const [email, setEmail] = useState(undefined);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) setEmail(currentUser.email);
+      else navigate('/login');
+    });
+    return () => unsubscribe();
+  }, [navigate]);
+
+  const addToList = async () => {
+    try {
+      await axios.post("http://localhost:3000/api/user/add", { email, data: movieData });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const removeFromList = async () => {
+    // Implement the remove from list functionality here
+    console.log("Remove from list");
+  };
 
   return (
     <Container
@@ -35,7 +58,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
               onClick={() => navigate("/player")}
             />
             <iframe 
-              src="https://www.youtube.com/embed/80dqOwAOhbo?autoplay=1" 
+              src={`https://www.youtube.com/embed/${movieData.video}?autoplay=1`} 
               title="YouTube video player" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -57,16 +80,12 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
                 {isLiked ? (
                   <BsCheck
                     title="Remove from List"
-                    onClick={() =>
-                      dispatch(
-                        
-                      )
-                    }
+                    onClick={removeFromList}
                   />
                 ) : (
                   <AiOutlinePlus
                     title="Add to my list"
-                 
+                    onClick={addToList}
                   />
                 )}
               </div>

@@ -11,6 +11,7 @@ import { AuthListener } from './Utilities/AuthListener';
 import Movies from "./pages/Movies";
 import Series from "./pages/Series";
 import HelpCenter from "./components/HelpCenter";
+import UserLiked from "./pages/UserLiked";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/player" element={<Player />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/series" element={<Series />} />
+        <Route path="/UserLiked" element={<UserLiked />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/help-center" element={<HelpCenter />} />
         <Route path="/" element={<Home />} />

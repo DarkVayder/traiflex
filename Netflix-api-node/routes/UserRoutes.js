@@ -6,4 +6,4 @@ const { addToLikedMovies, getLikedMovies, removeFromLikedMovies,} = require("../
   router.post("/add", addToLikedMovies);
   router.put("/remove", removeFromLikedMovies);
   
-  module.exports = router;
+  module.exports = router; 

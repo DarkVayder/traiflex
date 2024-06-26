@@ -9,12 +9,13 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import { auth } from '../Utilities/Firebase';
 import { signOut } from 'firebase/auth';
 
+
 export default function Nav({ isScrolled }) {
     const links = [
         { name: "Home", link: "/" },
         { name: "TV Shows", link: "/Series" },
         { name: "Movies", link: "/movies" },
-        { name: "My List", link: "/mylist" },
+        { name: "My List", link: "/UserLiked" },
     ];
 
     const [showSearch, setShowSearch] = useState(false);

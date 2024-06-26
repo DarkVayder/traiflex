@@ -72,6 +72,14 @@ export const fetchMovies = createAsyncThunk(
   }
 );
 
+export const getUsersLikedMovies = createAsyncThunk(
+  "netflix/getUsersLikedMovies",
+  async (email) => {
+    const response = await axios.get(`/api/user/liked-movies?email=${email}`);
+    return response.data;
+  }
+);
+
 const NetflixSlice = createSlice({
   name: "netflix",
   initialState,
@@ -84,6 +92,9 @@ const NetflixSlice = createSlice({
       state.movies = action.payload;
     });
     builder.addCase(fetchDataByGenre.fulfilled, (state, action) => {
+      state.movies = action.payload;
+    });
+    builder.addCase(getUsersLikedMovies.fulfilled, (state, action) => {
       state.movies = action.payload;
     });
   },
