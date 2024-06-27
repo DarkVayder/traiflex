@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loadingGif from '../assets/loading.gif';
 import BackgroundImage from '../components/BackgroundImage';
-import logo from '../assets/Netflix logo.png';
+import logo from '../assets/logo.png';
 
 const Login = () => {
   const [formValues, setFormValues] = React.useState({

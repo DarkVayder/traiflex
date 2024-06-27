@@ -52,7 +52,7 @@ export default function Home() {
             </div>
             <div className="buttons flex">
               <button className="play flex j-center a-center" onClick={() => navigate("/player")}>
-                <FaPlay className="icon" /> Play Trailer
+                <FaPlay className="icon" /> <hi>Play Trailer </hi>
               </button>
               <button className="info flex j-center a-center">
                 <AiOutlineInfoCircle className="icon" /> More Info
@@ -103,6 +103,8 @@ const Container = styled.div`
 
       button {
         font-size: 1.4rem;
+        font-weight: 500;
+        line-height: 2.4rem;
         gap: 1rem;
         border-radius: 0.2rem;
         padding: 0.5rem;
@@ -115,6 +117,10 @@ const Container = styled.div`
         align-items: center;
         justify-content: center;
 
+        .h1 {
+          color: black;
+        }
+
         &:hover {
           opacity: 0.8;
         }
@@ -122,6 +128,7 @@ const Container = styled.div`
         &.play {
           background-color: rgba(109, 109, 110, 0.7);
           color: white;
+          display: block;
 
           &:hover {
             background-color: rgba(109, 109, 110, 0.7);

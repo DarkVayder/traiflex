@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import avatar from '../assets/Avatar.png';
 import { auth } from '../Utilities/Firebase';
 import profilebackground from '../assets/background_banner.jpg';
-import logo from '../assets/Netflix logo.png';
+import logo from '../assets/logo.png';
 
 const Profile = () => {
   const [userEmail, setUserEmail] = useState('User Email');

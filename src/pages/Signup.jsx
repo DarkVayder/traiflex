@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loadingGif from '../assets/loading.gif';
-import logo from '../assets/Netflix logo.png';
+import logo from '../assets/logo.png';
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);

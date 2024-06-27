@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import logo from '../assets/Netflix logo.png';
+import logo from '../assets/logo.png';
 import { FaSearch } from 'react-icons/fa';
 import avatar from '../assets/Avatar.png';
 import { IoMdArrowDropdown } from 'react-icons/io';
