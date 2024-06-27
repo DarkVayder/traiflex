@@ -88,6 +88,7 @@ const FooterLinks = styled.ul`
   list-style: none;
   color: grey;
   cursor: pointer;
+  font-size: 12.5px;
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -113,11 +114,11 @@ const FooterLinkItem = styled.li`
 
 const CopyrightText = styled.p`
   color: grey;
-  font-size: 14px;
+  font-size: 12.5px;
   margin-top: 20px;
   text-align: left;
   cursor: none;
-  
+
   @media (max-width: 768px) {
     font-size: 12px;
   }
