@@ -34,6 +34,10 @@ export default function Signup() {
     }
   };
 
+  const handleLogIn = () => {
+    navigate('/login');
+  };
+
   return (
     <>
       {isLoading ? (
@@ -91,6 +95,9 @@ export default function Signup() {
             <div className="button-container flex column a-center j-center">
               <button onClick={handleSignUp} className="signup-button">
                 Sign Up
+              </button>
+              <button onClick={handleLogIn} className="login-button">
+                Already have an account? Log In
               </button>
             </div>
           </div>
@@ -185,6 +192,92 @@ const Container = styled.div`
       font-size: 1.2rem;
       &:hover {
         background-color: #f40612;
+      }
+    }
+    .login-button {
+      padding: 0.5rem 1rem;
+      background-color: #0080ff;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 0.2rem;
+      font-size: 1.2rem;
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .body {
+      .text {
+        h1 {
+          font-size: 2rem;
+        }
+        h4 {
+          font-size: 1.2rem;
+        }
+        h6 {
+          font-size: 1rem;
+        }
+      }
+      .form {
+        .input-container {
+          input {
+            padding: 0.8rem;
+          }
+          button {
+            padding: 0.8rem;
+          }
+        }
+        input[type="password"] {
+          padding: 0.8rem;
+        }
+      }
+      .button-container {
+        .signup-button, .login-button {
+          padding: 0.5rem 1rem;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .body {
+      .text {
+        h1 {
+          font-size: 1.5rem;
+        }
+        h4 {
+          font-size: 1rem;
+        }
+        h6 {
+          font-size: 0.8rem;
+        }
+      }
+      .form {
+        .input-container {
+          flex-direction: column;
+          input {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 0.5rem;
+          }
+          button {
+            width: 100%;
+            padding: 0.8rem;
+          }
+        }
+        input[type="password"] {
+          padding: 0.8rem;
+        }
+      }
+      .button-container {
+        .signup-button, .login-button {
+          padding: 0.5rem 1rem;
+          font-size: 0.9rem;
+        }
       }
     }
   }

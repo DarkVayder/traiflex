@@ -9,17 +9,22 @@ export const AuthListener = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
+        // If user is authenticated
         if (location.pathname === '/login' || location.pathname === '/signup') {
+          // Redirect to home if trying to access login or signup page
           navigate("/");
         }
       } else {
+        // If user is not authenticated
         if (location.pathname !== '/login' && location.pathname !== '/signup') {
+          // Redirect to login if trying to access any other page
           navigate("/login");
         }
       }
     });
-    return () => unsubscribe();
+
+    return () => unsubscribe(); // Cleanup function to unsubscribe from auth listener
   }, [navigate, location.pathname]);
 
-  return null;
+  return null; // AuthListener does not render anything visible
 };

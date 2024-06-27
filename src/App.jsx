@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <ToastContainer theme="dark" />
-      <AuthListener />
+      <AuthListener /> 
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
