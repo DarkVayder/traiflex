@@ -9,7 +9,7 @@ import { BsCheck } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../Utilities/Firebase"; // Correctly import the auth object
+import { auth } from "../Utilities/Firebase";
 
 export default React.memo(function Card({ index, movieData, isLiked = false }) {
   const navigate = useNavigate();
@@ -31,11 +31,6 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const removeFromList = async () => {
-    // Implement the remove from list functionality here
-    console.log("Remove from list");
   };
 
   return (
@@ -80,7 +75,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
                 {isLiked ? (
                   <BsCheck
                     title="Remove from List"
-                    onClick={removeFromList}
+                    //onClick={() => dispatch(removeFromLikedMovies(movieData.id, email))}
                   />
                 ) : (
                   <AiOutlinePlus
@@ -181,6 +176,51 @@ const Container = styled.div`
           &:first-of-type {
             list-style-type: none;
           }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    max-width: 180px;
+    width: 180px;
+    .hover {
+      width: 16rem;
+      .image-video-container {
+        height: 120px;
+        img, iframe {
+          height: 120px;
+        }
+      }
+      .info-container {
+        padding: 0.8rem;
+      }
+      .icons {
+        svg {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    max-width: 150px;
+    width: 150px;
+    .hover {
+      width: 14rem;
+      top: -15vh;
+      .image-video-container {
+        height: 100px;
+        img, iframe {
+          height: 100px;
+        }
+      }
+      .info-container {
+        padding: 0.5rem;
+      }
+      .icons {
+        svg {
+          font-size: 1.2rem;
         }
       }
     }

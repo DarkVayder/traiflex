@@ -8,19 +8,19 @@ import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, getGenres } from '../Utilities/store';
-import  Slider from "../components/Slider";
+import Slider from "../components/Slider";
 import Footer from "../components/Footer";
+
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
   const movies = useSelector((state) => state.netflix.movies);
   const dispatch = useDispatch(); 
-  
+
   useEffect(() => {
     dispatch(getGenres());
   }, [dispatch]); 
-
 
   useEffect(() => {
     if (genresLoaded) {
@@ -38,9 +38,8 @@ export default function Home() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, 
-[]);
-console.log(movies);
+  }, []);
+
   return (
     <Container>
       <div className="app">
@@ -70,14 +69,17 @@ console.log(movies);
 
 const Container = styled.div`
   background-color: black;
+
   .hero {
     position: relative;
+
     .background-image {
       filter: brightness(60%);
       height: 100vh;
       width: 100vw;
       object-fit: cover;
     }
+
     .container {
       position: absolute;
       bottom: 5rem;
@@ -86,6 +88,7 @@ const Container = styled.div`
       flex-direction: column;
       gap: 2rem;
     }
+
     .logo {
       img {
         width: 100%;
@@ -93,9 +96,11 @@ const Container = styled.div`
         margin-bottom: 2rem;
       }
     }
+
     .buttons {
       display: flex;
       gap: 1rem;
+
       button {
         font-size: 1.4rem;
         gap: 1rem;
@@ -109,29 +114,86 @@ const Container = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+
         &:hover {
           opacity: 0.8;
         }
+
         &.play {
           background-color: rgba(109, 109, 110, 0.7);
           color: white;
+
           &:hover {
             background-color: rgba(109, 109, 110, 0.7);
           }
+
           .icon {
             margin-right: 0.5rem;
           }
         }
+
         &.info {
           background-color: rgba(109, 109, 110, 0.7);
           color: white;
+
           &:hover {
             background-color: rgba(109, 109, 110, 0.5);
           }
+
           .icon {
             font-size: 1.4rem;
             margin-right: 0.5rem;
           }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      .container {
+        bottom: 3rem;
+        left: 1rem;
+      }
+
+      .buttons {
+        button {
+          font-size: 1rem;
+          padding: 0.4rem;
+          padding-left: 1.5rem;
+          padding-right: 1.8rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      .background-image {
+        height: 50vh;
+      }
+
+      .container {
+        bottom: 2rem;
+        left: 1rem;
+      }
+
+      .logo {
+        img {
+          max-width: 20rem;
+        }
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+
+        button {
+          font-size: 0.9rem;
+          padding: 0.3rem;
+          padding-left: 1rem;
+          padding-right: 1.2rem;
         }
       }
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaFacebookF, FaXTwitter, FaWhatsapp } from 'react-icons/fa6';
+import { FaFacebookF, FaTwitter, FaWhatsapp } from 'react-icons/fa6';
 import { FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ function Footer() {
         <FaYoutube aria-label="YouTube" />
         <FaFacebookF aria-label="Facebook" />
         <FaWhatsapp aria-label="WhatsApp" />
-        <FaXTwitter aria-label="Twitter" />
+        <FaTwitter aria-label="Twitter" />
       </FooterIcons>
       <FooterLinks>
         {footerLinks.map((link) => (
@@ -48,41 +48,81 @@ const FooterContainer = styled.div`
   margin: 0 auto;
   background-color: inherit;
   color: white;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 20px 3%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px 2%;
+  }
 `;
 
 const FooterIcons = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 130px;
+  gap: 20px;
   margin-bottom: 20px;
   cursor: pointer;
+
+  svg {
+    font-size: 1.5rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const FooterLinks = styled.ul`
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   margin-bottom: 30px;
   list-style: none;
   color: white;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
 `;
 
 const FooterLinkItem = styled.li`
   &:hover {
     color: #ddd;
     transition: ease-in-out;
+
+    @media (max-width: 480px) {
+      text-align: left;
+    }
   }
 `;
 
 const CopyrightText = styled.p`
   color: grey;
   font-size: 14px;
-  text-align: center;
   margin-top: 20px;
-  width: 100%;
-  cursor: none;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+  }
 `;
 
 export default Footer;

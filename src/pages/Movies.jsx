@@ -55,6 +55,14 @@ const Container = styled.div`
   background-color: #141414;
   min-height: 100vh;
   color: #fff;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 0.5rem;
+  }
 `;
 
 const NavWrapper = styled.div`
@@ -70,6 +78,16 @@ const GenreSelector = styled.div`
   padding: 1rem 2rem;
   background-color: rgba(0, 0, 0, 0.8);
   border-bottom: 1px solid #333;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    margin-top: 4rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+    margin-top: 3rem;
+  }
 `;
 
 const Content = styled.div`
@@ -80,7 +98,21 @@ const Content = styled.div`
     text-align: center;
     color: white;
     margin-top: 4rem;
+
+    @media (max-width: 768px) {
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 480px) {
+      margin-top: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem;
   }
 `;
-
-
