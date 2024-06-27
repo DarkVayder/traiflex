@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import avatar from '../assets/Avatar.png';
 import { auth } from '../Utilities/Firebase';
-import profilebackground from '../assets/ProfileBackground.jpg';
+import profilebackground from '../assets/background_banner.jpg';
 import logo from '../assets/Netflix logo.png';
 
 const Profile = () => {

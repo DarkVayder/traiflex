@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaFacebookF, FaInstagram, } from 'react-icons/fa6';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa6';
 import { FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -20,12 +20,18 @@ function Footer() {
     { name: "Help Centre", path: "/help-center" },
   ];
 
+  const [serviceCode, setServiceCode] = useState("Service Code");
+
+  const handleServiceCodeClick = () => {
+    setServiceCode("000 111");
+  };
+
   return (
     <FooterContainer>
       <FooterIcons>
-      <FaFacebookF aria-label="Facebook" />
-      <FaInstagram aria-label="Instagram" />
-      <FaYoutube aria-label="YouTube" />  
+        <FaFacebookF aria-label="Facebook" />
+        <FaInstagram aria-label="Instagram" />
+        <FaYoutube aria-label="YouTube" />
       </FooterIcons>
       <FooterLinks>
         {footerLinks.map((link) => (
@@ -36,6 +42,9 @@ function Footer() {
           </FooterLinkItem>
         ))}
       </FooterLinks>
+      <ServiceCode onClick={handleServiceCodeClick}>
+        <h1>{serviceCode}</h1>
+      </ServiceCode>
       <CopyrightText>1997-2024 Netflix Inc.</CopyrightText>
     </FooterContainer>
   );
@@ -104,7 +113,7 @@ const FooterLinks = styled.ul`
 const FooterLinkItem = styled.li`
   &:hover {
     color: #ddd;
-    transition: ease-in-out;
+    transition: color 0.3s ease-in-out;
 
     @media (max-width: 480px) {
       text-align: left;
@@ -125,6 +134,20 @@ const CopyrightText = styled.p`
 
   @media (max-width: 480px) {
     font-size: 10px;
+  }
+`;
+
+const ServiceCode = styled.div`
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.3s ease-in-out;
+  h1 {
+    color: grey;
+    font-size: 16px;
+  }
+  &:hover {
+    color: #ddd;
+    transition: color 0.3s ease-in-out;
   }
 `;
 

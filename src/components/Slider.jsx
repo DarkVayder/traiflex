@@ -1,5 +1,6 @@
 import React from 'react';
 import CardSlider from '../components/CardSlider';
+import styled from 'styled-components';
 
 export default function Slider({ movies }) {
   const getMoviesFromRange = (from, to) => {
@@ -17,3 +18,8 @@ export default function Slider({ movies }) {
     </div>
   );
 }
+
+const Container = styled.div`
+  padding: 20px;
+`;
+

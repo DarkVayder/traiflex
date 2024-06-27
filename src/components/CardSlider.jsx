@@ -2,10 +2,12 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Card from "./Card";
+
 export default React.memo(function CardSlider({ data, title }) {
   const listRef = useRef();
   const [sliderPosition, setSliderPosition] = useState(0);
   const [showControls, setShowControls] = useState(false);
+
   const handleDirection = (direction) => {
     let distance = listRef.current.getBoundingClientRect().x - 70;
     if (direction === "left" && sliderPosition > 0) {
@@ -25,7 +27,7 @@ export default React.memo(function CardSlider({ data, title }) {
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
-      <h1>{title}</h1>
+       <Title>{title}</Title>
       <div className="wrapper">
         <div
           className={`slider-action left ${
@@ -54,6 +56,7 @@ const Container = styled.div`
   gap: 1rem;
   position: relative;
   padding: 2rem 0;
+  background-color: black;
   h1 {
     margin-left: 50px;
   }
@@ -87,4 +90,11 @@ const Container = styled.div`
       right: 0;
     }
   }
+`;
+const Title = styled.h1`
+  color: #e0e0e0;
+  font-size: 19px;
+  font-weight: bold;
+  margin: 0 0 10px 50px;
+  cursor: pointer;
 `;
