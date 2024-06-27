@@ -96,9 +96,6 @@ export default function Signup() {
               <button onClick={handleSignUp} className="signup-button">
                 Sign Up
               </button>
-              <button onClick={handleLogIn} className="login-button">
-                Already have an account? Log In
-              </button>
             </div>
           </div>
         </Container>
@@ -194,20 +191,7 @@ const Container = styled.div`
         background-color: #f40612;
       }
     }
-    .login-button {
-      padding: 0.5rem 1rem;
-      background-color: #0080ff;
-      border: none;
-      color: white;
-      cursor: pointer;
-      border-radius: 0.2rem;
-      font-size: 1.2rem;
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
-  }
-
+  
   @media (max-width: 768px) {
     .body {
       .text {

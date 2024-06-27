@@ -52,7 +52,7 @@ export default function Home() {
             </div>
             <div className="buttons flex">
               <button className="play flex j-center a-center" onClick={() => navigate("/player")}>
-                <FaPlay className="icon" /> Play
+                <FaPlay className="icon" /> Play Trailer
               </button>
               <button className="info flex j-center a-center">
                 <AiOutlineInfoCircle className="icon" /> More Info

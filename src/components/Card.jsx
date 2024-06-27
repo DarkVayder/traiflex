@@ -75,7 +75,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
                 {isLiked ? (
                   <BsCheck
                     title="Remove from List"
-                    //onClick={() => dispatch(removeFromLikedMovies(movieData.id, email))}
+                    
                   />
                 ) : (
                   <AiOutlinePlus
