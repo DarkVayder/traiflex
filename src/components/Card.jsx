@@ -124,9 +124,9 @@ const Container = styled.div`
     border-radius: 0.3rem;
     box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
     background-color: #181818;
-    transition: 0.3s ease-in-out;
-    animation: hoverAnimation 0.5s ease-in-out forwards;
-    animation-delay: 0.5s;
+    transition: 50s ease-in-out;
+    animation: hoverAnimation 80s ease-in-out forwards;
+    animation-delay: 60s;
     .image-video-container {
       position: relative;
       height: 140px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaFacebookF, FaTwitter, FaWhatsapp } from 'react-icons/fa6';
+import { FaFacebookF, FaInstagram, } from 'react-icons/fa6';
 import { FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -23,10 +23,9 @@ function Footer() {
   return (
     <FooterContainer>
       <FooterIcons>
-        <FaYoutube aria-label="YouTube" />
-        <FaFacebookF aria-label="Facebook" />
-        <FaWhatsapp aria-label="WhatsApp" />
-        <FaTwitter aria-label="Twitter" />
+      <FaFacebookF aria-label="Facebook" />
+      <FaInstagram aria-label="Instagram" />
+      <FaYoutube aria-label="YouTube" />  
       </FooterIcons>
       <FooterLinks>
         {footerLinks.map((link) => (
@@ -61,8 +60,8 @@ const FooterContainer = styled.div`
 
 const FooterIcons = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   gap: 20px;
   margin-bottom: 20px;
   cursor: pointer;
@@ -82,11 +81,12 @@ const FooterIcons = styled.div`
 
 const FooterLinks = styled.ul`
   display: grid;
+  text-align: left;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   margin-bottom: 30px;
   list-style: none;
-  color: white;
+  color: grey;
   cursor: pointer;
 
   @media (max-width: 768px) {
@@ -115,7 +115,9 @@ const CopyrightText = styled.p`
   color: grey;
   font-size: 14px;
   margin-top: 20px;
-
+  text-align: left;
+  cursor: none;
+  
   @media (max-width: 768px) {
     font-size: 12px;
   }
