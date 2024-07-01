@@ -73,7 +73,7 @@ const Logo = styled.div`
   left: 20px;
 
   img {
-    height: 4.5rem;
+    height: 1.5rem;
     cursor: pointer;
 
     @media (max-width: 768px) {

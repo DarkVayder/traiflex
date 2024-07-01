@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import loadingGif from '../assets/loading.gif';
 import BackgroundImage from '../components/BackgroundImage';
 import logo from '../assets/logo.png';
+import Footer from "../components/Footer"
 
 const Login = () => {
   const [formValues, setFormValues] = React.useState({
@@ -82,6 +83,7 @@ const Login = () => {
               </Form>
             </FormContainer>
           </Content>
+          <Footer/>
         </>
       )}
     </Container>
@@ -98,6 +100,10 @@ const Logo = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
+
+  img {
+    height: 1.5rem; /* Adjusted the height to 1.5rem */
+  }
 `;
 
 const Content = styled.div`

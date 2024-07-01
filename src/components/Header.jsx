@@ -31,7 +31,7 @@ const Container = styled.div`
   align-items: center;
 
   .logo img {
-    height: 4.5rem;
+    height: 1.5rem;
   }
 
   button {

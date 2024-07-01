@@ -111,9 +111,14 @@ const Container = styled.div`
       display: flex;
       align-items: center;
 
-      .brand img {
-        height: 2.5rem;
+      .brand {
+        display: flex;
+        align-items: center;
         margin-right: 1.5rem;
+
+        img {
+          height: 1.5rem;
+        }
       }
 
       .links {

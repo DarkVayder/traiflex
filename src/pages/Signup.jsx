@@ -108,6 +108,7 @@ const Container = styled.div`
   position: relative;
   height: 100vh;
   width: 100vw;
+
   .body {
     position: absolute;
     top: 20%;
@@ -116,6 +117,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     .text {
       gap: 1rem;
       text-align: center;
@@ -134,12 +136,14 @@ const Container = styled.div`
         margin-bottom: 2rem;
       }
     }
+
     .form {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
       max-width: 400px;
+
       .input-container {
         display: flex;
         width: 100%;
@@ -164,6 +168,7 @@ const Container = styled.div`
           }
         }
       }
+
       input[type="password"] {
         margin-top: 1rem;
         width: 100%;
@@ -173,12 +178,14 @@ const Container = styled.div`
         font-size: 1rem;
       }
     }
+
     .button-container {
       margin-top: 1rem;
       button {
         margin-bottom: 0.5rem;
       }
     }
+
     .signup-button {
       padding: 0.5rem 1rem;
       background-color: #e50914;
@@ -191,7 +198,8 @@ const Container = styled.div`
         background-color: #f40612;
       }
     }
-  
+  }
+
   @media (max-width: 768px) {
     .body {
       .text {
@@ -219,7 +227,7 @@ const Container = styled.div`
         }
       }
       .button-container {
-        .signup-button, .login-button {
+        .signup-button {
           padding: 0.5rem 1rem;
           font-size: 1rem;
         }
@@ -258,7 +266,7 @@ const Container = styled.div`
         }
       }
       .button-container {
-        .signup-button, .login-button {
+        .signup-button {
           padding: 0.5rem 1rem;
           font-size: 0.9rem;
         }
