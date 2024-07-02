@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, getGenres } from '../Utilities/store';
 import Slider from "../components/Slider";
 import Footer from "../components/Footer";
+import movieTrailer from "movie-trailer";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,6 +41,16 @@ export default function Home() {
     };
   }, []);
 
+  const handlePlayTrailer = (movieName) => {
+    movieTrailer(movieName)
+      .then((url) => {
+        const urlParams = new URLSearchParams(new URL(url).search);
+        const videoId = urlParams.get("v");
+        navigate("/player", { state: { videoId } });
+      })
+      .catch((error) => console.error("Error fetching trailer:", error));
+  };
+
   return (
     <Container>
       <div className="app">
@@ -51,8 +62,8 @@ export default function Home() {
               <img src={Movielogo} alt="Movie Logo" />
             </div>
             <div className="buttons flex">
-              <button className="play flex j-center a-center" onClick={() => navigate("/player")}>
-                <FaPlay className="icon" /> <hi>Play Trailer </hi>
+              <button className="play flex j-center a-center" onClick={() => handlePlayTrailer("The Protector")}>
+                <FaPlay className="icon" /> <span>Play Trailer</span>
               </button>
               <button className="info flex j-center a-center">
                 <AiOutlineInfoCircle className="icon" /> More Info
@@ -102,23 +113,20 @@ const Container = styled.div`
       gap: 1rem;
 
       button {
-        font-size: 1.4rem;
+        font-size: 1rem;
         font-weight: 500;
-        line-height: 2.4rem;
-        gap: 1rem;
-        border-radius: 0.2rem;
-        padding: 0.5rem;
-        padding-left: 2rem;
-        padding-right: 2.4rem;
+        line-height: 1.5rem; 
+        gap: 0.5rem; 
+        border-radius: 0.6rem;
+        padding: 0.4rem 1rem; 
         border: none;
         cursor: pointer;
         transition: 0.3s ease-in-out;
         display: flex;
         align-items: center;
         justify-content: center;
-
-        .h1 {
-          color: black;
+        .icon {
+          margin-right: 0.5rem;
         }
 
         &:hover {
@@ -126,16 +134,14 @@ const Container = styled.div`
         }
 
         &.play {
-          background-color: rgba(109, 109, 110, 0.7);
-          color: white;
-          display: block;
-
-          &:hover {
-            background-color: rgba(109, 109, 110, 0.7);
+          background-color: white;
+          color: black;
+          .icon {
+            color: black;
           }
 
-          .icon {
-            margin-right: 0.5rem;
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.8);
           }
         }
 
