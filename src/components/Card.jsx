@@ -12,6 +12,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Utilities/Firebase";
 import movieTrailer from "movie-trailer";
 import YouTube from "react-youtube";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default React.memo(function Card({ index, movieData, isLiked = false }) {
   const navigate = useNavigate();
@@ -35,7 +37,10 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
           const urlParams = new URLSearchParams(new URL(url).search);
           setVideoId(urlParams.get("v"));
         })
-        .catch((error) => console.error("Error fetching trailer:", error));
+        .catch((error) => {
+          console.error("Error fetching trailer:", error);
+          toast.error("Trailer not available");
+        });
     }
   }, [isHovered, movieData.name]);
 
@@ -60,6 +65,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      <ToastContainer />
       <img
         src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
         alt="card"
@@ -139,9 +145,8 @@ const Container = styled.div`
     border-radius: 0.3rem;
     box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
     background-color: #181818;
-    transition: 50s ease-in-out;
-    animation: hoverAnimation 80s ease-in-out forwards;
-    animation-delay: 60s;
+    transition: 0.5s ease-in-out;
+    animation: hoverAnimation 0.5s ease-in-out forwards; 
     .image-video-container {
       position: relative;
       height: 140px;
