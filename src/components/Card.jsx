@@ -10,12 +10,15 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Utilities/Firebase";
+import movieTrailer from "movie-trailer";
+import YouTube from "react-youtube";
 
 export default React.memo(function Card({ index, movieData, isLiked = false }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isHovered, setIsHovered] = useState(false);
   const [email, setEmail] = useState(undefined);
+  const [videoId, setVideoId] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -25,12 +28,31 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
     return () => unsubscribe();
   }, [navigate]);
 
+  useEffect(() => {
+    if (isHovered) {
+      movieTrailer(movieData.name || "")
+        .then((url) => {
+          const urlParams = new URLSearchParams(new URL(url).search);
+          setVideoId(urlParams.get("v"));
+        })
+        .catch((error) => console.error("Error fetching trailer:", error));
+    }
+  }, [isHovered, movieData.name]);
+
   const addToList = async () => {
     try {
       await axios.post("http://localhost:3000/api/user/add", { email, data: movieData });
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const opts = {
+    height: '140',
+    width: '100%',
+    playerVars: {
+      autoplay: 1,
+    },
   };
 
   return (
@@ -41,41 +63,34 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
       <img
         src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
         alt="card"
-        onClick={() => navigate("/player")}
+        onClick={() => navigate('/player', { state: { videoId } })}
       />
 
-      {isHovered && (
+      {isHovered && videoId && (
         <div className="hover">
           <div className="image-video-container">
             <img
               src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
               alt="card"
-              onClick={() => navigate("/player")}
+              onClick={() => navigate('/player', { state: { videoId } })}
             />
-            <iframe 
-              src={`https://www.youtube.com/embed/${movieData.video}?autoplay=1`} 
-              title="YouTube video player" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-            />
+            <YouTube videoId={videoId} opts={opts} />
           </div>
           <div className="info-container flex column">
-            <h3 className="name" onClick={() => navigate("/player")}>
+            <h3 className="name" onClick={() => navigate('/player', { state: { videoId } })}>
               {movieData.name}
             </h3>
             <div className="icons flex j-between">
               <div className="controls flex">
                 <IoPlayCircleSharp
                   title="Play"
-                  onClick={() => navigate("/player")}
+                  onClick={() => navigate('/player', { state: { videoId } })}
                 />
                 <RiThumbUpFill title="Like" />
                 <RiThumbDownFill title="Dislike" />
                 {isLiked ? (
                   <BsCheck
                     title="Remove from List"
-                    
                   />
                 ) : (
                   <AiOutlinePlus
