@@ -11,9 +11,6 @@ import axios from "axios";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Utilities/Firebase";
 import movieTrailer from "movie-trailer";
-import YouTube from "react-youtube";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 export default React.memo(function Card({ index, movieData, isLiked = false }) {
   const navigate = useNavigate();
@@ -37,10 +34,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
           const urlParams = new URLSearchParams(new URL(url).search);
           setVideoId(urlParams.get("v"));
         })
-        .catch((error) => {
-          console.error("Error fetching trailer:", error);
-          toast.error("Trailer not available");
-        });
+        .catch((error) => console.error("Error fetching trailer:", error));
     }
   }, [isHovered, movieData.name]);
 
@@ -52,27 +46,18 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
     }
   };
 
-  const opts = {
-    height: '140',
-    width: '100%',
-    playerVars: {
-      autoplay: 1,
-    },
-  };
-
   return (
     <Container
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <ToastContainer />
       <img
         src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
         alt="card"
         onClick={() => navigate('/player', { state: { videoId } })}
       />
 
-      {isHovered && videoId && (
+      {isHovered && (
         <div className="hover">
           <div className="image-video-container">
             <img
@@ -80,7 +65,6 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
               alt="card"
               onClick={() => navigate('/player', { state: { videoId } })}
             />
-            <YouTube videoId={videoId} opts={opts} />
           </div>
           <div className="info-container flex column">
             <h3 className="name" onClick={() => navigate('/player', { state: { videoId } })}>
@@ -146,7 +130,6 @@ const Container = styled.div`
     box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
     background-color: #181818;
     transition: 0.5s ease-in-out;
-    animation: hoverAnimation 0.5s ease-in-out forwards; 
     .image-video-container {
       position: relative;
       height: 140px;
@@ -157,15 +140,6 @@ const Container = styled.div`
         border-radius: 0.3rem;
         top: 0;
         z-index: 4;
-        position: absolute;
-      }
-      iframe {
-        width: 100%;
-        height: 140px;
-        object-fit: cover;
-        border-radius: 0.3rem;
-        top: 0;
-        z-index: 5;
         position: absolute;
       }
     }
@@ -208,7 +182,7 @@ const Container = styled.div`
       width: 16rem;
       .image-video-container {
         height: 120px;
-        img, iframe {
+        img {
           height: 120px;
         }
       }
@@ -231,7 +205,7 @@ const Container = styled.div`
       top: -15vh;
       .image-video-container {
         height: 100px;
-        img, iframe {
+        img {
           height: 100px;
         }
       }
