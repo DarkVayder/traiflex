@@ -42,7 +42,34 @@ const Container = styled.div`
     cursor: pointer;
     border-radius: 0.2rem;
     font-size: 1.2rem;
-     &:hover {
-          background-color: #f40612;
+    &:hover {
+      background-color: #f40612;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 2rem;
+
+    .logo img {
+      height: 1.2rem;
+    }
+
+    button {
+      padding: 0.4rem 0.8rem;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 1rem;
+
+    .logo img {
+      height: 1rem;
+    }
+
+    button {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+    }
   }
 `;

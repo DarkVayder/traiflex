@@ -65,6 +65,10 @@ const Container = styled.div`
   @media (max-width: 768px) {
     padding: 10px 5%;
   }
+
+  @media (max-width: 480px) {
+    padding: 10px 2%;
+  }
 `;
 
 const Logo = styled.div`
@@ -73,11 +77,14 @@ const Logo = styled.div`
   left: 20px;
 
   img {
-    height: 1.5rem;
+    height: 3rem;
     cursor: pointer;
 
     @media (max-width: 768px) {
-      height: 3rem;
+      height: 2.5rem;
+    }
+    @media (max-width: 480px) {
+      height: 2rem;
     }
   }
 `;
@@ -96,7 +103,7 @@ const ProfileBody = styled.div`
   }
 
   @media (max-width: 480px) {
-    padding-top: 30%;
+    padding-top: 25%;
   }
 `;
 
@@ -113,6 +120,7 @@ const Title = styled.h1`
 
   @media (max-width: 480px) {
     font-size: 30px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -135,6 +143,7 @@ const Avatar = styled.img`
 
   @media (max-width: 480px) {
     height: 60px;
+    margin-bottom: 15px;
   }
 `;
 
