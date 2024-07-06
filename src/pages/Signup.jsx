@@ -111,18 +111,20 @@ const Container = styled.div`
 
   .body {
     position: absolute;
-    top: 20%;
+    top: 10%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0 20px;
 
     .text {
       gap: 1rem;
       text-align: center;
       font-size: 2rem;
       margin-bottom: 2rem;
+
       h1 {
         font-size: 2.5rem;
         margin-bottom: 1rem;
@@ -148,7 +150,7 @@ const Container = styled.div`
         display: flex;
         width: 100%;
         input {
-          width: calc(100% - 120px);
+          flex: 1;
           padding: 1rem;
           margin-right: 1rem;
           border: none;
@@ -202,6 +204,8 @@ const Container = styled.div`
 
   @media (max-width: 768px) {
     .body {
+      padding: 0 10px;
+
       .text {
         h1 {
           font-size: 2rem;
@@ -215,11 +219,12 @@ const Container = styled.div`
       }
       .form {
         .input-container {
+          flex-direction: column;
           input {
-            padding: 0.8rem;
+            margin-bottom: 0.5rem;
           }
           button {
-            padding: 0.8rem;
+            width: 100%;
           }
         }
         input[type="password"] {
@@ -237,6 +242,8 @@ const Container = styled.div`
 
   @media (max-width: 480px) {
     .body {
+      padding: 0 5px;
+
       .text {
         h1 {
           font-size: 1.5rem;
@@ -250,15 +257,12 @@ const Container = styled.div`
       }
       .form {
         .input-container {
-          flex-direction: column;
           input {
-            width: 100%;
-            margin-right: 0;
-            margin-bottom: 0.5rem;
+            padding: 0.8rem;
           }
           button {
-            width: 100%;
             padding: 0.8rem;
+            font-size: 1rem;
           }
         }
         input[type="password"] {

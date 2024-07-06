@@ -83,7 +83,7 @@ const Login = () => {
               </Form>
             </FormContainer>
           </Content>
-          <Footer/>
+          <Footer />
         </>
       )}
     </Container>
@@ -102,7 +102,7 @@ const Logo = styled.div`
   left: 20px;
 
   img {
-    height: 1.5rem; /* Adjusted the height to 1.5rem */
+    height: 1.5rem;
   }
 `;
 
@@ -123,6 +123,16 @@ const FormContainer = styled.div`
   justify-content: center;
   gap: 2rem;
   height: 85vh;
+
+  @media (max-width: 768px) {
+    height: 80vh;
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 480px) {
+    height: 75vh;
+    padding: 0 0.5rem;
+  }
 `;
 
 const Form = styled.div`
@@ -133,6 +143,14 @@ const Form = styled.div`
   max-width: 450px;
   background-color: rgba(0, 0, 0, 0.75);
   border-radius: 8px;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+  }
 `;
 
 const Title = styled.div`
@@ -141,6 +159,10 @@ const Title = styled.div`
     color: #fff;
     font-size: 2rem;
     font-weight: 500;
+
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -153,6 +175,14 @@ const Input = styled.input`
   font-size: 1rem;
   background-color: #333;
   color: #fff;
+
+  @media (max-width: 768px) {
+    padding: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.6rem;
+  }
 `;
 
 const Button = styled.button`
@@ -169,16 +199,29 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
   &:hover {
     background-color: #f40612;
   }
+
   &:disabled {
     background-color: #888;
     cursor: not-allowed;
   }
+
   img {
     width: 1.5rem;
     height: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.6rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -188,14 +231,20 @@ const Extras = styled.div`
   width: 100%;
   color: #b3b3b3;
   font-size: 0.9rem;
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const RememberMe = styled.div`
   display: flex;
   align-items: center;
+
   input {
     margin-right: 0.5rem;
   }
+
   label {
     cursor: pointer;
   }
@@ -205,6 +254,7 @@ const NeedHelp = styled.div`
   a {
     color: #b3b3b3;
     text-decoration: none;
+
     &:hover {
       text-decoration: underline;
     }
@@ -218,8 +268,13 @@ const SignUpLink = styled(Link)`
   margin-top: 1rem;
   text-align: center;
   display: block;
+
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
   }
 `;
 

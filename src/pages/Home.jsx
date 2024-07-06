@@ -17,11 +17,11 @@ export default function Home() {
   const navigate = useNavigate();
   const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
   const movies = useSelector((state) => state.netflix.movies);
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getGenres());
-  }, [dispatch]); 
+  }, [dispatch]);
 
   useEffect(() => {
     if (genresLoaded) {
@@ -207,6 +207,10 @@ const Container = styled.div`
           padding: 0.3rem;
           padding-left: 1rem;
           padding-right: 1.2rem;
+        }
+
+        .info {
+          display: none;
         }
       }
     }

@@ -38,6 +38,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     .back {
       position: absolute;
       top: 1rem;
@@ -50,7 +51,20 @@ const Container = styled.div`
       svg {
         margin-right: 0.5rem;
       }
+
+      @media (max-width: 768px) {
+        top: 0.5rem;
+        left: 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: 480px) {
+        top: 0.25rem;
+        left: 0.25rem;
+        font-size: 1rem;
+      }
     }
+
     .video {
       width: 100%;
       height: 100%;
