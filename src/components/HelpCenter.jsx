@@ -16,7 +16,7 @@ export default function HelpCenter() {
         Thank you for Contacting help center!!
       </HelpCenterDescription>
       <ReturnButton onClick={() => navigate('/')}>
-        Return to Netflix
+        Return to Traiflex
       </ReturnButton>
     </HelpCenterContainer>
   );

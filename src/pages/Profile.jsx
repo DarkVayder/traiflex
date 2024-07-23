@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import avatar from '../assets/Avatar.png';
 import { auth } from '../Utilities/Firebase';
-import profilebackground from '../assets/background_banner.jpg';
+import profilebackground from '../assets/Backgound.png';
 import logo from '../assets/logo.png';
 
 const Profile = () => {

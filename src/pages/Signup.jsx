@@ -50,7 +50,7 @@ export default function Signup() {
           <Header Login={true} />
           <div className="body flex column a-center j-center">
             <div className="text flex column a-center">
-              <h1>Unlimited Movies, TV shows and more</h1>
+              <h1>Unlimited Movies and TV shows Trailers</h1>
               <h4>Watch anywhere. Cancel anytime</h4>
               <h6>
                 Ready to watch? Enter your email to create or restart your
