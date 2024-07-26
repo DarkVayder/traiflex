@@ -79,7 +79,7 @@ const Login = () => {
                     <a href=" ">Need help?</a>
                   </NeedHelp>
                 </Extras>
-                <SignUpLink to="/signup">Sign Up for Netflix</SignUpLink>
+                <SignUpLink to="/signup">New here? Sign Up for Traiflex!</SignUpLink>
               </Form>
             </FormContainer>
           </Content>

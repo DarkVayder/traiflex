@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loadingGif from '../assets/loading.gif';
-import logo from '../assets/logo.png';
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
@@ -50,11 +49,10 @@ export default function Signup() {
           <Header Login={true} />
           <div className="body flex column a-center j-center">
             <div className="text flex column a-center">
-              <h1>Unlimited Movies and TV shows Trailers</h1>
-              <h4>Watch anywhere. Cancel anytime</h4>
+              <h1>Explore Unlimited Trailers</h1>
+              <h4>Discover the latest trailers for movies and TV shows.</h4>
               <h6>
-                Ready to watch? Enter your email to create or restart your
-                membership.
+                Ready to dive in? Enter your email to create or restart your membership.
               </h6>
             </div>
             <div className="form">
