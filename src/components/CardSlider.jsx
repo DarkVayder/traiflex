@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import styled from "styled-components";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Card from "./Card";
@@ -10,7 +10,7 @@ export default React.memo(function CardSlider({ data, title }) {
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
 
-  const handleDirection = (direction) => {
+  const handleDirection = useCallback((direction) => {
     let distance = listRef.current.getBoundingClientRect().x - 70;
     if (direction === "left" && sliderPosition > 0) {
       listRef.current.style.transform = `translateX(${230 + distance}px)`;
@@ -20,7 +20,7 @@ export default React.memo(function CardSlider({ data, title }) {
       listRef.current.style.transform = `translateX(${-230 + distance}px)`;
       setSliderPosition(sliderPosition + 1);
     }
-  };
+  }, [sliderPosition]);
 
   const handleTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
@@ -58,18 +58,20 @@ export default React.memo(function CardSlider({ data, title }) {
           className={`slider-action left ${
             !showControls ? "none" : ""
           } flex j-center a-center`}
+          aria-label="Slide left"
         >
           <AiOutlineLeft onClick={() => handleDirection("left")} />
         </div>
         <div className="slider flex" ref={listRef}>
-          {data.map((movie, index) => {
-            return <Card movieData={movie} index={index} key={movie.id} />;
-          })}
+          {data.map((movie, index) => (
+            <Card movieData={movie} index={index} key={movie.id} />
+          ))}
         </div>
         <div
           className={`slider-action right ${
             !showControls ? "none" : ""
           } flex j-center a-center`}
+          aria-label="Slide right"
         >
           <AiOutlineRight onClick={() => handleDirection("right")} />
         </div>
@@ -121,6 +123,8 @@ const Container = styled.div`
       bottom: 0;
       width: 50px;
       transition: 0.3s ease-in-out;
+      cursor: pointer;
+      
       svg {
         font-size: 2rem;
 

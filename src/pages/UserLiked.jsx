@@ -7,7 +7,6 @@ import styled from "styled-components";
 import Nav from "../components/Nav";
 import { getUsersLikedMovies } from "../Utilities/store";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 
 const UserLiked = () => {
   const movies = useSelector((state) => state.netflix.movies);
