@@ -221,6 +221,7 @@ const Container = styled.div`
       }
       .form {
         .input-container {
+          margin-top: -42px;
           flex-direction: column;
           input {
             margin-bottom: 0.5rem;
