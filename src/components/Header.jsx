@@ -40,10 +40,10 @@ const Container = styled.div`
     border: none;
     color: white;
     cursor: pointer;
-    border-radius: 0.2rem;
-    font-size: 1.2rem;
+    border-radius: 0.8rem;
+    font-size: 0.95rem;
     &:hover {
-      background-color: #f40612;
+      background-color: rgb(114, 10, 15);
     }
   }
 

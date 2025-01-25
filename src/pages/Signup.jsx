@@ -52,7 +52,7 @@ export default function Signup() {
               <h1>Explore Unlimited Trailers</h1>
               <h4>Discover the latest trailers for movies and TV shows.</h4>
               <h6>
-                Ready to dive in? Enter your email to create or restart your membership.
+                Ready to dive in? Enter your email and click the get-start button.
               </h6>
             </div>
             <div className="form">
@@ -126,14 +126,17 @@ const Container = styled.div`
       h1 {
         font-size: 2.5rem;
         margin-bottom: 1rem;
+        color:  #f40612;
       }
       h4 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
+        color:  #f5f5dc;
       }
       h6 {
         font-size: 1.2rem;
         margin-bottom: 2rem;
+        color:  #f5f5dc;
       }
     }
 
@@ -143,6 +146,7 @@ const Container = styled.div`
       align-items: center;
       width: 100%;
       max-width: 400px;
+      margin-top: 240px;
 
       .input-container {
         display: flex;
@@ -164,7 +168,7 @@ const Container = styled.div`
           font-size: 1rem;
           cursor: pointer;
           &:hover {
-            background-color: #f40612;
+            background-color:rgb(114, 10, 15);
           }
         }
       }
@@ -195,7 +199,7 @@ const Container = styled.div`
       border-radius: 0.2rem;
       font-size: 1.2rem;
       &:hover {
-        background-color: #f40612;
+        background-color: rgb(114, 10, 15);
       }
     }
   }

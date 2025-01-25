@@ -80,7 +80,7 @@ export default function Nav({ isScrolled }) {
             <IoMdArrowDropdown className="dropdown-icon" onClick={handleDropdownClick} />
             {dropdownVisible && (
               <div className="dropdown">
-                <p onClick={handleLogout}>Sign Out of My Profile</p>
+                <p onClick={handleLogout}>Sign Out</p>
               </div>
             )}
           </div>

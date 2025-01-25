@@ -201,7 +201,7 @@ const Button = styled.button`
   align-items: center;
 
   &:hover {
-    background-color: #f40612;
+    background-color: rgb(114, 10, 15);
   }
 
   &:disabled {
