@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
 import { Spinner } from "@/components/ui/skeleton";
+import { loginHref } from "@/lib/auth/login-href";
 import { useAuth } from "./auth-provider";
 
 function FullScreenSpinner() {
@@ -13,7 +14,7 @@ function FullScreenSpinner() {
   );
 }
 
-/** Renders children only for signed-in users; otherwise sends them to /login and back afterwards. */
+/** For pages that need an account (My List, Account): signed-out visitors go to /login and back afterwards. */
 export function RequireAuth({ children }: { children: ReactNode }) {
   const { status } = useAuth();
   const router = useRouter();
@@ -22,7 +23,7 @@ export function RequireAuth({ children }: { children: ReactNode }) {
     if (status !== "signed-out") return;
     // Read the location here rather than via usePathname() so the shell can still prerender.
     const here = `${window.location.pathname}${window.location.search}`;
-    router.replace(here === "/" ? "/login" : `/login?next=${encodeURIComponent(here)}`);
+    router.replace(loginHref(here));
   }, [status, router]);
 
   return status === "signed-in" ? children : <FullScreenSpinner />;

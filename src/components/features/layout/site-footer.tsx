@@ -36,7 +36,9 @@ export function SiteFooter() {
           . This product uses the TMDB API but is not endorsed or certified by TMDB.
         </p>
       </div>
-      <p className="mt-6">© Traiflex · A portfolio project for discovering trailers.</p>
+      <p className="mt-6">
+        © Traiflex · An independent, Netflix-inspired portfolio project. Not affiliated with or endorsed by Netflix.
+      </p>
     </footer>
   );
 }

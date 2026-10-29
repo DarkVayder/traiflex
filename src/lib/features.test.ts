@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { loginHref } from "./auth/login-href";
 import { isDatabaseUnavailable } from "./db/errors";
 import type { MyListEntry } from "./my-list/schema";
 import { countByType, viewMyList } from "./my-list/view";
@@ -56,6 +57,13 @@ describe("search query helpers", () => {
   it("builds a safe search URL", () => {
     expect(searchHref("")).toBe("/search");
     expect(searchHref("a&b=c d")).toBe("/search?q=a%26b%3Dc%20d");
+  });
+});
+
+describe("loginHref", () => {
+  it("returns visitors to the page they came from, and skips ?next for the home page", () => {
+    expect(loginHref("/")).toBe("/login");
+    expect(loginHref("/watch/movie/1?x=1")).toBe("/login?next=%2Fwatch%2Fmovie%2F1%3Fx%3D1");
   });
 });
 

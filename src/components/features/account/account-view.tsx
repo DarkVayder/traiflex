@@ -43,7 +43,7 @@ export function AccountView() {
 
   const handleSignOut = async () => {
     await signOut(firebaseAuth());
-    router.replace("/login");
+    router.replace("/");
   };
 
   const rows = [

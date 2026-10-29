@@ -7,7 +7,9 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { buttonVariants } from "@/components/ui/button";
 import { Wordmark } from "@/components/ui/wordmark";
+import { loginHref } from "@/lib/auth/login-href";
 import { firebaseAuth } from "@/lib/firebase/client";
 import { cn } from "@/lib/utils";
 import { useAuth } from "../auth/auth-provider";
@@ -34,10 +36,78 @@ export function UserAvatar({ email, className }: { email: string | null | undefi
   );
 }
 
+/** Account menu when signed in, a Sign in button for guests, and a same-size gap while we find out. */
+function AccountSlot({ pathname }: { pathname: string }) {
+  const router = useRouter();
+  const { status, user } = useAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(firebaseAuth());
+      router.replace("/");
+    } catch {
+      toast.error("Couldn't sign you out. Please try again.");
+    }
+  };
+
+  if (status === "loading") return <div className="h-9 w-[4.5rem]" aria-hidden />;
+
+  if (status === "signed-out") {
+    return (
+      <Link href={loginHref(pathname)} className={buttonVariants({ size: "sm" })}>
+        Sign in
+      </Link>
+    );
+  }
+
+  return (
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger
+        className="flex items-center gap-1.5 rounded-md p-1 text-muted hover:text-foreground"
+        aria-label="Account menu"
+      >
+        <UserAvatar email={user?.email} />
+        <ChevronDown className="size-4" aria-hidden />
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content
+          align="end"
+          sideOffset={8}
+          className="z-50 min-w-56 rounded-lg border border-border bg-surface p-1.5 text-sm shadow-xl shadow-black/50"
+        >
+          <DropdownMenu.Label className="truncate px-3 py-2 text-xs text-subtle">{user?.email}</DropdownMenu.Label>
+          {[
+            { href: "/profile", label: "Account", Icon: UserRound },
+            { href: "/my-list", label: "My List", Icon: ListVideo },
+            { href: "/help", label: "Help Centre", Icon: CircleHelp },
+          ].map(({ href, label, Icon }) => (
+            <DropdownMenu.Item key={href} asChild>
+              <Link
+                href={href}
+                className="flex items-center gap-3 rounded-md px-3 py-2 outline-none data-[highlighted]:bg-surface-raised"
+              >
+                <Icon className="size-4 text-muted" aria-hidden />
+                {label}
+              </Link>
+            </DropdownMenu.Item>
+          ))}
+          <DropdownMenu.Separator className="my-1 h-px bg-border" />
+          <DropdownMenu.Item
+            onSelect={handleSignOut}
+            className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 outline-none data-[highlighted]:bg-surface-raised"
+          >
+            <LogOut className="size-4 text-muted" aria-hidden />
+            Sign out of Traiflex
+          </DropdownMenu.Item>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
+  );
+}
+
 export function SiteNav() {
   const pathname = usePathname();
   const router = useRouter();
-  const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -59,15 +129,6 @@ export function SiteNav() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [router]);
-
-  const handleSignOut = async () => {
-    try {
-      await signOut(firebaseAuth());
-      router.replace("/login");
-    } catch {
-      toast.error("Couldn't sign you out. Please try again.");
-    }
-  };
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
@@ -112,47 +173,7 @@ export function SiteNav() {
           >
             <Search className="size-5" aria-hidden />
           </Link>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger
-              className="flex items-center gap-1.5 rounded-md p-1 text-muted hover:text-foreground"
-              aria-label="Account menu"
-            >
-              <UserAvatar email={user?.email} />
-              <ChevronDown className="size-4" aria-hidden />
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Portal>
-              <DropdownMenu.Content
-                align="end"
-                sideOffset={8}
-                className="z-50 min-w-56 rounded-lg border border-border bg-surface p-1.5 text-sm shadow-xl shadow-black/50"
-              >
-                <DropdownMenu.Label className="truncate px-3 py-2 text-xs text-subtle">{user?.email}</DropdownMenu.Label>
-                {[
-                  { href: "/profile", label: "Account", Icon: UserRound },
-                  { href: "/my-list", label: "My List", Icon: ListVideo },
-                  { href: "/help", label: "Help Centre", Icon: CircleHelp },
-                ].map(({ href, label, Icon }) => (
-                  <DropdownMenu.Item key={href} asChild>
-                    <Link
-                      href={href}
-                      className="flex items-center gap-3 rounded-md px-3 py-2 outline-none data-[highlighted]:bg-surface-raised"
-                    >
-                      <Icon className="size-4 text-muted" aria-hidden />
-                      {label}
-                    </Link>
-                  </DropdownMenu.Item>
-                ))}
-                <DropdownMenu.Separator className="my-1 h-px bg-border" />
-                <DropdownMenu.Item
-                  onSelect={handleSignOut}
-                  className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 outline-none data-[highlighted]:bg-surface-raised"
-                >
-                  <LogOut className="size-4 text-muted" aria-hidden />
-                  Sign out of Traiflex
-                </DropdownMenu.Item>
-              </DropdownMenu.Content>
-            </DropdownMenu.Portal>
-          </DropdownMenu.Root>
+          <AccountSlot pathname={pathname} />
         </div>
       </nav>
       <ul className="no-scrollbar flex gap-5 overflow-x-auto px-4 pb-3 text-sm sm:px-8 md:hidden">{links("whitespace-nowrap py-1")}</ul>
