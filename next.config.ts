@@ -12,12 +12,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   cacheComponents: true,
   partialPrefetching: true,
-  experimental: {
-    // Every page in (app) sits behind the client-side auth gate, so none can render into the
-    // prerendered shell. Validate only segments that opt in with `instant`; otherwise each
-    // page is reported as a dropped segment on every load.
-    instantInsights: { validationLevel: "manual-warning" },
-  },
   images: {
     // TMDB already serves pre-sized renditions, so a custom loader picks the
     // closest one instead of re-optimizing through /_next/image.

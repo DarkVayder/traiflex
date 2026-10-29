@@ -67,6 +67,9 @@ export function SignupForm({ next }: { next: string }) {
           Sign in
         </Link>
       </p>
+      <Link href="/" className="text-sm text-subtle hover:text-foreground hover:underline">
+        Just looking? Browse without an account
+      </Link>
     </AuthCard>
   );
 }
